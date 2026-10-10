@@ -10,8 +10,8 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
     {
       sender: 'bot',
       text: lang === 'en' 
-        ? "Hello Rohan! I am your 'Gyan Saathi' AI Tutor. Ask me any doubt in Math or Science, and I will explain with simple real-world examples."
-        : `नमस्ते रोहन! मी/मी/હું/నేను ನಿಮ್ಮ 'ज्ञान साथी' AI ट्यूटर आहे/છું/ఉన్నాను. Ask me any doubt in ${langConfig ? langConfig.name : 'your language'}!`
+        ? "Hello Rohan! I am your 'Gyan Saathi' AI Tutor. Ask me any doubt in Math or Science, and I will explain with simple village & real-world examples."
+        : `नमस्ते रोहन! मैं आपका 'ज्ञान साथी' AI ट्यूटर हूँ। गणित या विज्ञान में कोई भी सवाल पूछें, मैं सरल भाषा और गांव के उदाहरणों के साथ समझाऊंगा।`
     }
   ]);
   const [inputVal, setInputVal] = useState('');
@@ -27,22 +27,20 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
   }, [messages, isTyping]);
 
   const quickPrompts = [
-    "Fractions (अपूर्णांक / भिन्न) क्या हैं?",
-    "Photosynthesis (प्रकाश संश्लेषण) क्या है?",
-    "Percentages (प्रतिशत / टक्केवारी) का उपयोग?"
+    "What are Fractions? (Roti analogy)",
+    "How does Photosynthesis work?",
+    "Why do we need Percentages?"
   ];
 
   const handleSend = (textToSend) => {
     const query = textToSend || inputVal;
     if (!query.trim()) return;
 
-    // Add user message
     const newMsgs = [...messages, { sender: 'user', text: query }];
     setMessages(newMsgs);
     setInputVal('');
     setIsTyping(true);
 
-    // AI answer synthesis
     setTimeout(() => {
       const qLower = query.toLowerCase();
       let matched = prebuiltAiDoubtAnswers.find(item => 
@@ -60,92 +58,93 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
 
       setMessages(prev => [...prev, { sender: 'bot', text: reply }]);
       setIsTyping(false);
-    }, 700);
+    }, 600);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 w-full max-w-md bg-white rounded-2xl shadow-2xl border border-amber-200/80 overflow-hidden flex flex-col h-[520px] animate-slideUp">
+    <div className="fixed bottom-6 right-6 z-50 w-full max-w-sm sm:max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden flex flex-col h-[520px] animate-slideUp">
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-4 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-emerald-500/30 border border-emerald-300/40 flex items-center justify-center">
-            <Bot className="w-4 h-4 text-emerald-200" />
+      <div className="bg-slate-900 text-white p-4 px-5 flex items-center justify-between shadow-xs">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center">
+            <Sparkles className="w-4 h-4 text-emerald-400" />
           </div>
           <div>
-            <h3 className="font-bold text-sm flex items-center gap-1.5">
-              <span>{lang === 'hi' ? 'ज्ञान साथी AI ट्यूटर' : 'Gyan Saathi AI Tutor'}</span>
-              <span className="text-[10px] bg-emerald-500/40 px-1.5 py-0.5 rounded text-emerald-100 font-medium">Rural AI</span>
+            <h3 className="font-bold text-sm flex items-center gap-2">
+              <span>Gyan Saathi AI</span>
+              <span className="text-[10px] bg-emerald-500/30 px-2 py-0.5 rounded-full text-emerald-200 font-semibold">
+                Rural AI Tutor
+              </span>
             </h3>
-            <p className="text-[11px] text-emerald-200">
-              {lang === 'hi' ? 'ग्रामीण छात्रों के लिए सरल स्पष्टीकरण' : 'Simple vernacular explanations & analogies'}
+            <p className="text-[11px] text-slate-400">
+              Vernacular explanations & relatable village analogies
             </p>
           </div>
         </div>
         <button 
           onClick={onClose}
-          className="text-emerald-200 hover:text-white p-1 rounded-lg hover:bg-white/10"
+          className="text-slate-400 hover:text-white p-1 rounded-xl hover:bg-slate-800 transition"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Messages Scroll Area */}
-      <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-amber-50/20 text-xs">
+      <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50 text-xs">
         {messages.map((m, idx) => (
           <div 
             key={idx}
             className={`flex items-start gap-2 ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {m.sender === 'bot' && (
-              <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-bold">
+              <div className="w-7 h-7 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-black shadow-xs">
                 AI
               </div>
             )}
-            <div className={`max-w-[82%] rounded-2xl p-3 shadow-sm leading-relaxed ${
+            <div className={`max-w-[85%] rounded-2xl p-3.5 shadow-2xs leading-relaxed ${
               m.sender === 'user'
-                ? 'bg-emerald-600 text-white rounded-br-none'
-                : 'bg-white text-slate-800 border border-amber-200/60 rounded-bl-none'
+                ? 'bg-slate-900 text-white rounded-tr-xs'
+                : 'bg-white text-slate-800 border border-slate-200/80 rounded-tl-xs'
             }`}>
-              <p>{m.text}</p>
+              <p className="whitespace-pre-line">{m.text}</p>
               {m.sender === 'bot' && (
                 <button
                   onClick={() => onSpeakText(m.text)}
-                  className="mt-2 text-[10px] text-emerald-700 hover:text-emerald-900 font-semibold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"
+                  className="mt-2.5 text-[10px] text-emerald-700 hover:text-emerald-900 font-bold flex items-center gap-1.5 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/70 transition"
                 >
                   <Volume2 className="w-3 h-3" />
-                  <span>{lang === 'hi' ? 'सुनो' : 'Listen'}</span>
+                  <span>Listen Out Loud</span>
                 </button>
               )}
             </div>
             {m.sender === 'user' && (
-              <div className="w-6 h-6 rounded-full bg-slate-700 text-white flex items-center justify-center text-[10px] shrink-0 mt-0.5">
-                <User className="w-3 h-3" />
+              <div className="w-7 h-7 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-bold">
+                <User className="w-3.5 h-3.5" />
               </div>
             )}
           </div>
         ))}
 
         {isTyping && (
-          <div className="flex items-center gap-2 text-slate-400 text-xs italic pl-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-            <span>{lang === 'hi' ? 'ज्ञान साथी सोच रहा है...' : 'Saathi is thinking...'}</span>
+          <div className="flex items-center gap-2 text-slate-400 text-xs italic pl-9">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            <span>Saathi is thinking...</span>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Suggested Quick Prompts */}
+      {/* Quick Prompt Chips */}
       <div className="px-3 py-2 bg-white border-t border-slate-100 flex gap-1.5 overflow-x-auto text-[11px] whitespace-nowrap">
         {quickPrompts.map((q, idx) => (
           <button
             key={idx}
             onClick={() => handleSend(q)}
-            className="px-2.5 py-1 rounded-full bg-amber-100/70 hover:bg-amber-200 text-amber-900 border border-amber-300/50 flex items-center gap-1 transition"
+            className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold transition"
           >
-            <Lightbulb className="w-2.5 h-2.5 text-amber-700" />
-            <span>{q}</span>
+            {q}
           </button>
         ))}
       </div>
@@ -162,13 +161,13 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
           type="text"
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
-          placeholder={lang === 'hi' ? 'शंका पूछें (जैसे: भिन्न क्या है?)...' : 'Ask doubt in Hindi or English...'}
-          className="flex-1 text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50"
+          placeholder="Ask any doubt (e.g. What are fractions?)..."
+          className="flex-1 text-xs px-4 py-2.5 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 focus:bg-white transition"
         />
         <button
           type="submit"
           disabled={!inputVal.trim()}
-          className="w-9 h-9 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 text-white flex items-center justify-center transition shadow-sm"
+          className="w-9 h-9 rounded-2xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-30 text-white flex items-center justify-center transition shadow-xs shrink-0"
         >
           <Send className="w-4 h-4" />
         </button>

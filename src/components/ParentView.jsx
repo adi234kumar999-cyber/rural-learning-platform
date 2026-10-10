@@ -1,5 +1,5 @@
 import React from 'react';
-import { Smartphone, MessageSquare, PhoneCall, CheckCheck, Clock, Award, AlertCircle } from 'lucide-react';
+import { Smartphone, MessageSquare, CheckCheck, AlertCircle, Signal, Battery, Radio } from 'lucide-react';
 import { translations, supportedLanguages } from '../data/mockData';
 
 export function ParentView({ lang }) {
@@ -57,71 +57,90 @@ export function ParentView({ lang }) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6 pb-20">
-      {/* Intro */}
-      <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
-            <Smartphone className="w-5 h-5" />
+    <div className="max-w-xl mx-auto space-y-6 pb-28">
+      {/* Overview Card */}
+      <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-xs space-y-3">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-bold">
+            <Smartphone className="w-5 h-5 text-amber-600" />
           </div>
           <div>
-            <h2 className="text-base font-bold text-slate-900">
-              {t.parentRole} • Regional SMS Broadcast
+            <h2 className="text-lg font-bold text-slate-900">
+              Low-Tech Vernacular SMS & IVR Portal
             </h2>
             <p className="text-xs text-slate-500">
-              {langConfig ? langConfig.name : 'Regional'} Language SMS updates on basic feature phones
+              Bridging the digital divide for rural parents using basic 2G feature phones
             </p>
           </div>
         </div>
-        <p className="text-xs text-slate-600 leading-relaxed bg-amber-50 p-3 rounded-xl border border-amber-200">
-          💡 <strong>Rural Innovation:</strong> To bridge the digital divide for parents with basic keypad phones without internet, GyanSetu automatically broadcasts vernacular SMS & IVR voice summaries in their preferred mother tongue.
+        <p className="text-xs text-slate-600 leading-relaxed bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+          💡 <strong>Rural Innovation:</strong> In villages where parents own simple keypad phones without internet data packs, GyanSetu automatically broadcasts weekly SMS alerts and automated voice calls (IVR) in their mother tongue.
         </p>
       </div>
 
-      {/* Simulated Keypad Phone Screen */}
-      <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-2xl border-4 border-slate-700 max-w-md mx-auto">
-        <div className="flex justify-between items-center text-[10px] text-slate-400 border-b border-slate-800 pb-2 mb-4">
-          <span>BSNL 2G • 4 Bars</span>
-          <span>10:30 AM</span>
+      {/* Modern Feature Phone Device Mockup */}
+      <div className="bg-slate-900 text-white rounded-[40px] p-6 shadow-2xl border-4 border-slate-700 max-w-sm mx-auto space-y-4">
+        {/* Phone Earpiece */}
+        <div className="flex justify-center items-center gap-2 mb-1">
+          <div className="w-12 h-1.5 bg-slate-800 rounded-full" />
+          <div className="w-2 h-2 bg-slate-800 rounded-full" />
         </div>
 
-        <div className="space-y-4">
-          {/* SMS Bubble 1 */}
-          <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-2">
-            <div className="flex items-center justify-between text-[11px] text-emerald-400 font-bold">
-              <span className="flex items-center gap-1.5">
-                <MessageSquare className="w-3.5 h-3.5" />
-                <span>SMS from: GyanSetu-GovtSchool</span>
-              </span>
-              <span className="text-slate-400 text-[10px]">Today</span>
-            </div>
-            <p className="text-xs text-slate-200 leading-relaxed font-sans">
-              {getSms1()}
-            </p>
-            <div className="flex justify-end text-[10px] text-slate-400 flex items-center gap-1">
-              <CheckCheck className="w-3 h-3 text-emerald-400" />
-              <span>Delivered</span>
-            </div>
+        {/* Feature Phone Screen */}
+        <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800 space-y-3 shadow-inner">
+          <div className="flex justify-between items-center text-[10px] text-slate-400 border-b border-slate-800/80 pb-2">
+            <span className="flex items-center gap-1 font-bold">
+              <Radio className="w-3 h-3 text-emerald-400" />
+              <span>BSNL 2G</span>
+            </span>
+            <span>10:30 AM</span>
           </div>
 
-          {/* SMS Bubble 2 */}
-          <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-2">
-            <div className="flex items-center justify-between text-[11px] text-amber-400 font-bold">
-              <span className="flex items-center gap-1.5">
-                <AlertCircle className="w-3.5 h-3.5" />
-                <span>Teacher Note: Sharma Ji</span>
-              </span>
-              <span className="text-slate-400 text-[10px]">Yesterday</span>
+          <div className="space-y-3 py-1">
+            {/* SMS Message 1 */}
+            <div className="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 space-y-1.5">
+              <div className="flex items-center justify-between text-[11px] text-emerald-400 font-bold">
+                <span className="flex items-center gap-1">
+                  <MessageSquare className="w-3 h-3" />
+                  <span>GyanSetu-School</span>
+                </span>
+                <span className="text-slate-500 text-[10px]">Today</span>
+              </div>
+              <p className="text-xs text-slate-200 leading-relaxed">
+                {getSms1()}
+              </p>
+              <div className="flex justify-end text-[10px] text-slate-400 items-center gap-1 pt-0.5">
+                <CheckCheck className="w-3 h-3 text-emerald-400" />
+                <span>Delivered</span>
+              </div>
             </div>
-            <p className="text-xs text-slate-200 leading-relaxed font-sans">
-              {getSms2()}
-            </p>
+
+            {/* SMS Message 2 */}
+            <div className="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 space-y-1.5">
+              <div className="flex items-center justify-between text-[11px] text-amber-400 font-bold">
+                <span className="flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  <span>Sharma Ji (Teacher)</span>
+                </span>
+                <span className="text-slate-500 text-[10px]">Yesterday</span>
+              </div>
+              <p className="text-xs text-slate-200 leading-relaxed">
+                {getSms2()}
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Feature phone home button simulation */}
-        <div className="mt-6 pt-4 border-t border-slate-800 flex justify-center">
-          <div className="w-12 h-1 bg-slate-700 rounded-full" />
+        {/* Keypad Buttons Simulation */}
+        <div className="pt-2 px-3 space-y-2">
+          <div className="grid grid-cols-3 gap-2 text-center text-[10px] font-bold text-slate-400">
+            <div className="bg-slate-800 py-1.5 rounded-lg border border-slate-700">1</div>
+            <div className="bg-slate-800 py-1.5 rounded-lg border border-slate-700">2 <span className="text-[8px] block opacity-50">ABC</span></div>
+            <div className="bg-slate-800 py-1.5 rounded-lg border border-slate-700">3 <span className="text-[8px] block opacity-50">DEF</span></div>
+            <div className="bg-slate-800 py-1.5 rounded-lg border border-slate-700">4 <span className="text-[8px] block opacity-50">GHI</span></div>
+            <div className="bg-slate-800 py-1.5 rounded-lg border border-slate-700">5 <span className="text-[8px] block opacity-50">JKL</span></div>
+            <div className="bg-slate-800 py-1.5 rounded-lg border border-slate-700">6 <span className="text-[8px] block opacity-50">MNO</span></div>
+          </div>
         </div>
       </div>
     </div>
