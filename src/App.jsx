@@ -310,7 +310,7 @@ export function App() {
               System Architecture & Viva Defense
             </button>
             <span>•</span>
-            <span>React + Node.js + FastAPI AI Service</span>
+            <span></span>
           </div>
         </div>
       </footer>
