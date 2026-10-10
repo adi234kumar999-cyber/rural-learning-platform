@@ -49,34 +49,37 @@ export function Navbar({
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-xs transition-all">
+    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs transition-all">
+      {/* UP Portal Government Aesthetic Accent Line */}
+      <div className="h-1 w-full bg-gradient-to-r from-upsaffron-600 via-amber-400 to-upnavy-800" />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         
         {/* Left: Brand + Role Navigation Pills */}
         <div className="flex items-center gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => setRole('student')}>
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-sm shadow-emerald-600/30">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-upnavy-900 via-upnavy-800 to-upnavy-700 flex items-center justify-center text-upsaffron-400 shadow-sm shadow-upnavy-900/30 border border-upnavy-700/40">
               <BookOpen className="w-5 h-5 stroke-[2.2]" />
             </div>
             <div>
-              <span className="text-lg font-black tracking-tight text-slate-900 font-sans leading-none">
-                Gyan<span className="text-emerald-600">Setu</span>
+              <span className="text-lg font-black tracking-tight text-upnavy-950 font-sans leading-none">
+                Gyan<span className="text-upsaffron-600">Setu</span>
               </span>
-              <span className="block text-[10px] text-slate-400 font-medium tracking-tight">
-                Rural EdTech
+              <span className="block text-[10px] text-slate-500 font-semibold tracking-tight">
+                Rural EdTech Portal
               </span>
             </div>
           </div>
 
           {/* Segmented Role Navigation */}
-          <nav className="hidden md:flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200/60 text-xs">
+          <nav className="hidden md:flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200/70 text-xs">
             <button
               onClick={() => setRole('student')}
               className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
                 role === 'student'
-                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
-                  : 'text-slate-500 hover:text-slate-900'
+                  ? 'bg-upnavy-800 text-white shadow-xs font-bold'
+                  : 'text-slate-600 hover:text-upnavy-900'
               }`}
             >
               Student
@@ -85,8 +88,8 @@ export function Navbar({
               onClick={() => setRole('teacher')}
               className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
                 role === 'teacher'
-                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
-                  : 'text-slate-500 hover:text-slate-900'
+                  ? 'bg-upnavy-800 text-white shadow-xs font-bold'
+                  : 'text-slate-600 hover:text-upnavy-900'
               }`}
             >
               Teacher
@@ -95,8 +98,8 @@ export function Navbar({
               onClick={() => setRole('parent')}
               className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
                 role === 'parent'
-                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
-                  : 'text-slate-500 hover:text-slate-900'
+                  ? 'bg-upnavy-800 text-white shadow-xs font-bold'
+                  : 'text-slate-600 hover:text-upnavy-900'
               }`}
             >
               Parent SMS
@@ -105,8 +108,8 @@ export function Navbar({
               onClick={() => setRole('admin')}
               className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
                 role === 'admin'
-                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
-                  : 'text-slate-500 hover:text-slate-900'
+                  ? 'bg-upnavy-800 text-white shadow-xs font-bold'
+                  : 'text-slate-600 hover:text-upnavy-900'
               }`}
             >
               Admin
@@ -180,10 +183,10 @@ export function Navbar({
             {currentUser ? (
               <button
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                className="flex items-center gap-2 p-1 pl-2 bg-slate-50 hover:bg-slate-100 border border-slate-200/80 rounded-full transition text-xs text-slate-800 font-semibold"
+                className="flex items-center gap-2 p-1 pl-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200/80 rounded-full transition text-xs text-upnavy-900 font-semibold"
               >
                 <span className="hidden md:inline font-bold">{currentUser.name.split(' ')[0]}</span>
-                <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs shadow-2xs">
+                <div className="w-7 h-7 rounded-full bg-upnavy-100 text-upnavy-900 flex items-center justify-center font-bold text-xs shadow-2xs border border-upnavy-200">
                   {currentUser.avatar}
                 </div>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 mr-1" />
@@ -191,7 +194,7 @@ export function Navbar({
             ) : (
               <button
                 onClick={onOpenAuthModal}
-                className="px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition active:scale-95 flex items-center gap-1.5"
+                className="px-4 py-1.5 rounded-full text-xs font-bold bg-upsaffron-600 hover:bg-upsaffron-700 text-white shadow-sm shadow-upsaffron-600/30 transition active:scale-95 flex items-center gap-1.5"
               >
                 <LogIn className="w-3.5 h-3.5" />
                 <span>Sign In</span>
@@ -202,8 +205,8 @@ export function Navbar({
             {isProfileMenuOpen && currentUser && (
               <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 z-50 animate-fadeIn text-xs">
                 <div className="p-3 border-b border-slate-100 mb-1">
-                  <div className="font-bold text-slate-900 text-sm">{currentUser.name}</div>
-                  <div className="text-[11px] text-emerald-700 font-medium capitalize">{currentUser.role} Account</div>
+                  <div className="font-bold text-upnavy-950 text-sm">{currentUser.name}</div>
+                  <div className="text-[11px] text-upsaffron-700 font-bold capitalize">{currentUser.role} Account</div>
                   {currentUser.school && (
                     <div className="text-[10px] text-slate-400 truncate mt-0.5">{currentUser.school}</div>
                   )}
@@ -239,9 +242,9 @@ export function Navbar({
                       setIsProfileMenuOpen(false);
                       onOpenAuthModal();
                     }}
-                    className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-50 text-emerald-700 font-semibold flex items-center gap-2"
+                    className="w-full text-left px-3 py-2 rounded-xl hover:bg-upsaffron-50 text-upsaffron-700 font-semibold flex items-center gap-2"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                    <Sparkles className="w-3.5 h-3.5 text-upsaffron-600" />
                     <span>Switch Role / Demo</span>
                   </button>
 
@@ -268,25 +271,25 @@ export function Navbar({
       <div className="md:hidden border-t border-slate-100 px-4 py-2 bg-slate-50 flex items-center justify-between text-xs overflow-x-auto gap-2">
         <button
           onClick={() => setRole('student')}
-          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'student' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'student' ? 'bg-upnavy-800 text-white' : 'text-slate-600'}`}
         >
           Student
         </button>
         <button
           onClick={() => setRole('teacher')}
-          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'teacher' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'teacher' ? 'bg-upnavy-800 text-white' : 'text-slate-600'}`}
         >
           Teacher
         </button>
         <button
           onClick={() => setRole('parent')}
-          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'parent' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'parent' ? 'bg-upnavy-800 text-white' : 'text-slate-600'}`}
         >
           Parent
         </button>
         <button
           onClick={() => setRole('admin')}
-          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'admin' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'admin' ? 'bg-upnavy-800 text-white' : 'text-slate-600'}`}
         >
           Admin
         </button>

@@ -160,11 +160,11 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50/60 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-[#f4f6f9] text-upnavy-950 font-sans">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-16 right-4 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl border border-slate-700 text-xs flex items-center gap-2 animate-bounce">
-          <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="fixed top-16 right-4 z-50 bg-upnavy-950 text-white px-4 py-2.5 rounded-xl shadow-xl border border-upnavy-800 text-xs flex items-center gap-2 animate-bounce">
+          <CheckCircle className="w-4 h-4 text-upsaffron-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -202,9 +202,9 @@ export function App() {
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-6">
         {/* If user logged out: Prompt login card */}
         {!currentUser && (
-          <div className="mb-6 bg-gradient-to-r from-emerald-900 to-teal-950 text-white p-6 rounded-3xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mb-6 bg-gradient-to-r from-upnavy-900 via-upnavy-800 to-upnavy-950 text-white p-6 rounded-3xl shadow-xl border border-upnavy-700/60 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-400/30">
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-upsaffron-500/20 text-upsaffron-300 px-2.5 py-0.5 rounded-full border border-upsaffron-400/30">
                 GyanSetu Authentication Gateway
               </span>
               <h2 className="text-xl font-bold">You are currently browsing as Guest</h2>
@@ -214,7 +214,7 @@ export function App() {
             </div>
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold text-xs flex items-center gap-2 shadow-lg active:scale-95 transition shrink-0"
+              className="px-6 py-2.5 rounded-xl bg-upsaffron-600 hover:bg-upsaffron-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-upsaffron-600/30 active:scale-95 transition shrink-0"
             >
               <LogIn className="w-4 h-4" />
               <span>Login / Switch Role</span>
@@ -300,17 +300,18 @@ export function App() {
       />
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-amber-200/60 bg-white/80 py-4 text-center text-xs text-slate-500">
+      <footer className="mt-auto border-t border-slate-200/90 bg-white/90 backdrop-blur-sm py-4 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div>
-            <strong>GyanSetu (ज्ञानसेतु)</strong> • Final Year Major Project 2026-27
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-upsaffron-500" />
+            <strong className="text-upnavy-950">GyanSetu (ज्ञानसेतु)</strong> • Major Project 2026-27 • UP Portal Design
           </div>
           <div className="flex items-center gap-4 text-[11px]">
-            <button onClick={() => setIsArchitectureOpen(true)} className="hover:underline text-emerald-700 font-semibold">
+            <button onClick={() => setIsArchitectureOpen(true)} className="hover:underline text-upnavy-800 hover:text-upsaffron-600 font-bold transition">
               System Architecture & Viva Defense
             </button>
             <span>•</span>
-            <span></span>
+            <span className="text-slate-400">Offline PWA Enabled</span>
           </div>
         </div>
       </footer>

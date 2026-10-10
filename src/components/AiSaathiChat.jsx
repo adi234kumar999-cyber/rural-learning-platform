@@ -66,26 +66,26 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
   return (
     <div className="fixed bottom-6 right-6 z-50 w-full max-w-sm sm:max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden flex flex-col h-[520px] animate-slideUp">
       {/* Header */}
-      <div className="bg-slate-900 text-white p-4 px-5 flex items-center justify-between shadow-xs">
+      <div className="bg-upnavy-900 text-white p-4 px-5 flex items-center justify-between shadow-xs border-b border-upnavy-800">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+          <div className="w-9 h-9 rounded-2xl bg-upsaffron-500/20 border border-upsaffron-400/30 flex items-center justify-center">
+            <Sparkles className="w-4 h-4 text-upsaffron-400" />
           </div>
           <div>
             <h3 className="font-bold text-sm flex items-center gap-2">
               <span>Gyan Saathi AI</span>
-              <span className="text-[10px] bg-emerald-500/30 px-2 py-0.5 rounded-full text-emerald-200 font-semibold">
+              <span className="text-[10px] bg-upsaffron-500/20 border border-upsaffron-400/30 px-2 py-0.5 rounded-full text-upsaffron-200 font-semibold">
                 Rural AI Tutor
               </span>
             </h3>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-300">
               Vernacular explanations & relatable village analogies
             </p>
           </div>
         </div>
         <button 
           onClick={onClose}
-          className="text-slate-400 hover:text-white p-1 rounded-xl hover:bg-slate-800 transition"
+          className="text-slate-300 hover:text-white p-1 rounded-xl hover:bg-upnavy-800 transition"
         >
           <X className="w-4 h-4" />
         </button>
@@ -99,22 +99,22 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
             className={`flex items-start gap-2 ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {m.sender === 'bot' && (
-              <div className="w-7 h-7 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-black shadow-xs">
+              <div className="w-7 h-7 rounded-xl bg-upnavy-800 text-upsaffron-400 border border-upnavy-700 flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-black shadow-xs">
                 AI
               </div>
             )}
             <div className={`max-w-[85%] rounded-2xl p-3.5 shadow-2xs leading-relaxed ${
               m.sender === 'user'
-                ? 'bg-slate-900 text-white rounded-tr-xs'
+                ? 'bg-upnavy-950 text-white rounded-tr-xs'
                 : 'bg-white text-slate-800 border border-slate-200/80 rounded-tl-xs'
             }`}>
               <p className="whitespace-pre-line">{m.text}</p>
               {m.sender === 'bot' && (
                 <button
                   onClick={() => onSpeakText(m.text)}
-                  className="mt-2.5 text-[10px] text-emerald-700 hover:text-emerald-900 font-bold flex items-center gap-1.5 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/70 transition"
+                  className="mt-2.5 text-[10px] text-upnavy-900 hover:text-upsaffron-600 font-bold flex items-center gap-1.5 bg-upnavy-50 px-2.5 py-1 rounded-lg border border-upnavy-200 transition"
                 >
-                  <Volume2 className="w-3 h-3" />
+                  <Volume2 className="w-3 h-3 text-upsaffron-600" />
                   <span>Listen Out Loud</span>
                 </button>
               )}
@@ -129,7 +129,7 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
 
         {isTyping && (
           <div className="flex items-center gap-2 text-slate-400 text-xs italic pl-9">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-upsaffron-500 animate-ping" />
             <span>Saathi is thinking...</span>
           </div>
         )}
@@ -162,12 +162,12 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           placeholder="Ask any doubt (e.g. What are fractions?)..."
-          className="flex-1 text-xs px-4 py-2.5 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50 focus:bg-white transition"
+          className="flex-1 text-xs px-4 py-2.5 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-upsaffron-500 bg-slate-50 focus:bg-white transition"
         />
         <button
           type="submit"
           disabled={!inputVal.trim()}
-          className="w-9 h-9 rounded-2xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-30 text-white flex items-center justify-center transition shadow-xs shrink-0"
+          className="w-9 h-9 rounded-2xl bg-upsaffron-600 hover:bg-upsaffron-700 disabled:opacity-30 text-white flex items-center justify-center transition shadow-xs shadow-upsaffron-600/30 shrink-0"
         >
           <Send className="w-4 h-4" />
         </button>

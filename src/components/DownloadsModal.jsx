@@ -14,11 +14,11 @@ export function DownloadsModal({ isOpen, onClose, lang, downloadedIds, onRemoveD
       <div className="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
         <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-              <HardDrive className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-lg bg-upnavy-100 text-upnavy-800 border border-upnavy-200 flex items-center justify-center font-bold">
+              <HardDrive className="w-4 h-4 text-upnavy-800" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-slate-900">
+              <h2 className="text-base font-bold text-upnavy-950">
                 {lang === 'hi' ? 'डिवाइस में सहेजे गए पाठ (IndexedDB)' : 'Device Offline Storage'}
               </h2>
               <p className="text-[11px] text-slate-500">
@@ -49,7 +49,7 @@ export function DownloadsModal({ isOpen, onClose, lang, downloadedIds, onRemoveD
                       onOpenLesson(ch);
                       onClose();
                     }}
-                    className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1 shadow-sm"
+                    className="px-3 py-1.5 rounded-lg bg-upsaffron-600 hover:bg-upsaffron-700 text-white font-bold text-xs flex items-center gap-1 shadow-sm shadow-upsaffron-600/30 transition"
                   >
                     <span>{lang === 'hi' ? 'पढ़ें' : 'Read'}</span>
                     <ArrowRight className="w-3 h-3" />

@@ -49,16 +49,16 @@ export function StudentView({
       {/* 1. Modern Hero Section with Bento Stat Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Main Welcome Hero Card */}
-        <div className="lg:col-span-2 bg-gradient-to-br from-white via-white to-emerald-50/40 rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs relative overflow-hidden flex flex-col justify-between">
+        <div className="lg:col-span-2 bg-gradient-to-br from-white via-white to-upnavy-50/50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs relative overflow-hidden flex flex-col justify-between">
           <div className="space-y-3 relative z-10">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100/70 px-3 py-1 rounded-full border border-emerald-200/60">
+              <span className="text-[11px] font-bold text-upnavy-900 bg-upnavy-100/80 px-3 py-1 rounded-full border border-upnavy-200">
                 Class 7A • Roll 24
               </span>
-              <span className="text-xs text-slate-400 font-medium">Govt Upper Primary School Rampur</span>
+              <span className="text-xs text-slate-500 font-medium">Govt Upper Primary School Rampur</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-snug">
+            <h1 className="text-2xl sm:text-3xl font-black text-upnavy-950 tracking-tight leading-snug">
               {lang === 'hi' ? 'नमस्ते, रोहन! 👋' : 'Welcome back, Rohan! 👋'}
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 max-w-lg leading-relaxed">
@@ -71,20 +71,20 @@ export function StudentView({
           {/* Daily Goal & Next Step Bar */}
           <div className="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0 font-bold">
-                <Target className="w-5 h-5 text-emerald-600" />
+              <div className="w-10 h-10 rounded-2xl bg-upsaffron-50 text-upsaffron-700 flex items-center justify-center shrink-0 font-bold border border-upsaffron-200">
+                <Target className="w-5 h-5 text-upsaffron-600" />
               </div>
               <div>
-                <div className="text-xs font-bold text-slate-800">
+                <div className="text-xs font-bold text-upnavy-950">
                   {lang === 'hi' ? 'आज का लक्ष्य (2/3 पाठ पूर्ण)' : 'Daily Learning Quest (2 of 3 Completed)'}
                 </div>
-                <div className="text-[11px] text-slate-400">1 practice quiz remaining for today's streak</div>
+                <div className="text-[11px] text-slate-500">1 practice quiz remaining for today's streak</div>
               </div>
             </div>
 
             <button
               onClick={() => onOpenLesson(sampleCourses[0].chapters[0])}
-              className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-2xl shadow-sm hover:shadow-md transition active:scale-95 flex items-center gap-2 shrink-0 self-start sm:self-auto"
+              className="px-5 py-2.5 bg-upsaffron-600 hover:bg-upsaffron-700 text-white text-xs font-bold rounded-2xl shadow-sm shadow-upsaffron-600/30 hover:shadow-md transition active:scale-95 flex items-center gap-2 shrink-0 self-start sm:self-auto"
             >
               <Play className="w-3.5 h-3.5 fill-white" />
               <span>{lang === 'hi' ? 'पाठ शुरू करें' : 'Resume Lesson'}</span>
@@ -101,13 +101,13 @@ export function StudentView({
                 <Flame className="w-6 h-6 fill-amber-500 animate-bounce" />
               </div>
               <div>
-                <div className="text-lg font-black text-slate-900 leading-tight">{studentStats.streakDays} Days</div>
-                <div className="text-[11px] text-slate-400 font-medium">Learning Streak 🔥</div>
+                <div className="text-lg font-black text-upnavy-950 leading-tight">{studentStats.streakDays} Days</div>
+                <div className="text-[11px] text-slate-500 font-medium">Learning Streak 🔥</div>
               </div>
             </div>
 
             <div className="text-right">
-              <div className="text-base font-black text-emerald-600 leading-tight">+{studentStats.pointsXP}</div>
+              <div className="text-base font-black text-upsaffron-600 leading-tight">+{studentStats.pointsXP}</div>
               <div className="text-[10px] text-slate-400 font-medium">XP Points</div>
             </div>
           </div>
@@ -115,17 +115,17 @@ export function StudentView({
           {/* Rural Data Saver & Offline Card */}
           <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600">
-                <HardDrive className="w-5 h-5 text-cyan-600" />
+              <div className="w-11 h-11 rounded-2xl bg-upnavy-50 border border-upnavy-200 flex items-center justify-center text-upnavy-700">
+                <HardDrive className="w-5 h-5 text-upnavy-700" />
               </div>
               <div>
-                <div className="text-lg font-black text-slate-900 leading-tight">{downloadedIds.length} Chapters</div>
-                <div className="text-[11px] text-slate-400 font-medium">Cached on Device 📦</div>
+                <div className="text-lg font-black text-upnavy-950 leading-tight">{downloadedIds.length} Chapters</div>
+                <div className="text-[11px] text-slate-500 font-medium">Cached on Device 📦</div>
               </div>
             </div>
 
             <div className="text-right">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100/70 px-2.5 py-1 rounded-full border border-emerald-200">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-upnavy-900 bg-upnavy-100/80 px-2.5 py-1 rounded-full border border-upnavy-200">
                 &lt; 50 KB total
               </span>
             </div>
@@ -140,8 +140,8 @@ export function StudentView({
             onClick={() => setActiveTab('courses')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
               activeTab === 'courses'
-                ? 'bg-white text-emerald-900 shadow-xs'
-                : 'text-slate-500 hover:text-slate-900'
+                ? 'bg-upnavy-800 text-white shadow-xs'
+                : 'text-slate-600 hover:text-upnavy-950'
             }`}
           >
             <BookOpen className="w-3.5 h-3.5" />
@@ -152,14 +152,14 @@ export function StudentView({
             onClick={() => setActiveTab('remedial')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
               activeTab === 'remedial'
-                ? 'bg-white text-emerald-900 shadow-xs'
-                : 'text-slate-500 hover:text-slate-900'
+                ? 'bg-upnavy-800 text-white shadow-xs'
+                : 'text-slate-600 hover:text-upnavy-950'
             }`}
           >
             <Brain className="w-3.5 h-3.5" />
             <span>AI Diagnostic Path</span>
             {diagnosticData.weakTopics.length > 0 && (
-              <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-upsaffron-500 animate-ping" />
             )}
           </button>
 
@@ -167,8 +167,8 @@ export function StudentView({
             onClick={() => setActiveTab('progress')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
               activeTab === 'progress'
-                ? 'bg-white text-emerald-900 shadow-xs'
-                : 'text-slate-500 hover:text-slate-900'
+                ? 'bg-upnavy-800 text-white shadow-xs'
+                : 'text-slate-600 hover:text-upnavy-950'
             }`}
           >
             <BarChart3 className="w-3.5 h-3.5" />
@@ -179,9 +179,9 @@ export function StudentView({
         {/* Retake Diagnostic Shortcut */}
         <button
           onClick={onOpenDiagnostic}
-          className="text-xs font-bold text-slate-600 hover:text-emerald-700 flex items-center gap-1.5 transition self-start sm:self-auto bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs"
+          className="text-xs font-bold text-upnavy-900 hover:text-upsaffron-600 flex items-center gap-1.5 transition self-start sm:self-auto bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs"
         >
-          <Compass className="w-3.5 h-3.5 text-amber-600" />
+          <Compass className="w-3.5 h-3.5 text-upsaffron-600" />
           <span>{lang === 'hi' ? 'दक्षता स्तर जांच परीक्षा दें' : 'Retake Diagnostic Test'}</span>
         </button>
       </div>
@@ -194,19 +194,19 @@ export function StudentView({
             <div className="flex items-center gap-1.5 text-xs">
               <button
                 onClick={() => setSelectedSubject('all')}
-                className={`px-3.5 py-1.5 rounded-xl font-bold transition ${selectedSubject === 'all' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                className={`px-3.5 py-1.5 rounded-xl font-bold transition ${selectedSubject === 'all' ? 'bg-upnavy-800 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
               >
                 All Subjects
               </button>
               <button
                 onClick={() => setSelectedSubject('math')}
-                className={`px-3.5 py-1.5 rounded-xl font-bold transition ${selectedSubject === 'math' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                className={`px-3.5 py-1.5 rounded-xl font-bold transition ${selectedSubject === 'math' ? 'bg-upnavy-800 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
               >
                 📐 Mathematics
               </button>
               <button
                 onClick={() => setSelectedSubject('science')}
-                className={`px-3.5 py-1.5 rounded-xl font-bold transition ${selectedSubject === 'science' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                className={`px-3.5 py-1.5 rounded-xl font-bold transition ${selectedSubject === 'science' ? 'bg-upnavy-800 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
               >
                 🔬 Science
               </button>
@@ -216,7 +216,7 @@ export function StudentView({
               onClick={() => setFilterOfflineOnly(!filterOfflineOnly)}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
                 filterOfflineOnly
-                  ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                  ? 'bg-upsaffron-100 text-upsaffron-900 border-upsaffron-300'
                   : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
               }`}
             >
@@ -241,16 +241,16 @@ export function StudentView({
                         {/* Concept Visual Illustration Banner */}
                         <div className="mb-4">
                           <div className="flex items-center justify-between mb-3">
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/50">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-upnavy-800 bg-upnavy-50 px-3 py-1 rounded-full border border-upnavy-200/60">
                               {getLocalized(course.title, lang)}
                             </span>
                             <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 bg-slate-50 px-2.5 py-0.5 rounded-full border border-slate-200/60">
-                              <Zap className="w-3 h-3 text-amber-500 fill-amber-500" />
+                              <Zap className="w-3 h-3 text-upsaffron-500 fill-upsaffron-500" />
                               <span>{chapter.sizeKB} KB</span>
                             </div>
                           </div>
 
-                          <h3 className="text-lg font-bold text-slate-900 mb-1.5 group-hover:text-emerald-700 transition">
+                          <h3 className="text-lg font-bold text-upnavy-950 mb-1.5 group-hover:text-upsaffron-600 transition">
                             {getLocalized(chapter.title, lang)}
                           </h3>
                           <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
@@ -264,7 +264,7 @@ export function StudentView({
                             onClick={() => onToggleDownload(chapter.id)}
                             className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border transition ${
                               isDownloaded
-                                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                                ? 'bg-upnavy-50 text-upnavy-800 border-upnavy-200'
                                 : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200'
                             }`}
                             title={isDownloaded ? 'Saved in device memory' : 'Download for offline use'}
@@ -275,7 +275,7 @@ export function StudentView({
 
                           <button
                             onClick={() => onOpenLesson(chapter)}
-                            className="px-5 py-2 rounded-xl bg-slate-900 hover:bg-emerald-600 text-white font-bold text-xs flex items-center gap-2 shadow-sm active:scale-95 transition"
+                            className="px-5 py-2 rounded-xl bg-upnavy-800 hover:bg-upsaffron-600 text-white font-bold text-xs flex items-center gap-2 shadow-sm active:scale-95 transition"
                           >
                             <span>Study & Quiz</span>
                             <ChevronRight className="w-3.5 h-3.5" />
@@ -296,7 +296,7 @@ export function StudentView({
           <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-xs space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h3 className="text-xl font-bold text-slate-900">
+                <h3 className="text-xl font-bold text-upnavy-950">
                   Topic Mastery & Remedial Roadmap
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -305,7 +305,7 @@ export function StudentView({
               </div>
               <button
                 onClick={onOpenDiagnostic}
-                className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-amber-950 font-bold rounded-xl text-xs shadow-xs transition"
+                className="px-4 py-2 bg-upsaffron-600 hover:bg-upsaffron-700 text-white font-bold rounded-xl text-xs shadow-xs transition"
               >
                 Retake Assessment
               </button>
@@ -325,7 +325,7 @@ export function StudentView({
                 <div className="pt-2">
                   <button
                     onClick={() => onOpenLesson(sampleCourses[0].chapters[0])}
-                    className="text-xs font-bold text-rose-700 hover:underline flex items-center gap-1"
+                    className="text-xs font-bold text-upsaffron-700 hover:underline flex items-center gap-1"
                   >
                     <span>Start Remedial Lesson</span>
                     <ArrowRight className="w-3 h-3" />
@@ -345,10 +345,10 @@ export function StudentView({
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200/90 space-y-2">
+              <div className="p-5 rounded-2xl bg-upnavy-50/70 border border-upnavy-200/90 space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-sm text-emerald-950">Decimals (दशमलव)</span>
-                  <span className="text-[10px] font-bold bg-emerald-200/80 text-emerald-900 px-2.5 py-0.5 rounded-full">
+                  <span className="font-bold text-sm text-upnavy-950">Decimals (दशमलव)</span>
+                  <span className="text-[10px] font-bold bg-upnavy-200/80 text-upnavy-900 px-2.5 py-0.5 rounded-full">
                     Mastered (90%)
                   </span>
                 </div>
@@ -357,10 +357,10 @@ export function StudentView({
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200/90 space-y-2">
+              <div className="p-5 rounded-2xl bg-upnavy-50/70 border border-upnavy-200/90 space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-sm text-emerald-950">Geometry Basics</span>
-                  <span className="text-[10px] font-bold bg-emerald-200/80 text-emerald-900 px-2.5 py-0.5 rounded-full">
+                  <span className="font-bold text-sm text-upnavy-950">Geometry Basics</span>
+                  <span className="text-[10px] font-bold bg-upnavy-200/80 text-upnavy-900 px-2.5 py-0.5 rounded-full">
                     Proficient (75%)
                   </span>
                 </div>
@@ -377,7 +377,7 @@ export function StudentView({
       {activeTab === 'progress' && (
         <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-xs space-y-6 animate-fadeIn">
           <div>
-            <h3 className="text-xl font-bold text-slate-900">
+            <h3 className="text-xl font-bold text-upnavy-950">
               Curriculum Mastery & Badges
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
@@ -389,10 +389,10 @@ export function StudentView({
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
               <div className="flex justify-between items-center text-xs font-bold">
                 <span className="text-slate-900">Mathematics</span>
-                <span className="text-emerald-700 font-black">{studentStats.subjectProgress.math}%</span>
+                <span className="text-upnavy-800 font-black">{studentStats.subjectProgress.math}%</span>
               </div>
               <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                <div className="bg-emerald-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${studentStats.subjectProgress.math}%` }} />
+                <div className="bg-upnavy-800 h-2.5 rounded-full transition-all duration-500" style={{ width: `${studentStats.subjectProgress.math}%` }} />
               </div>
               <div className="text-[11px] text-slate-400">Chapters: 2 completed • 1 remaining</div>
             </div>
@@ -400,10 +400,10 @@ export function StudentView({
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
               <div className="flex justify-between items-center text-xs font-bold">
                 <span className="text-slate-900">Science</span>
-                <span className="text-emerald-700 font-black">{studentStats.subjectProgress.science}%</span>
+                <span className="text-upsaffron-700 font-black">{studentStats.subjectProgress.science}%</span>
               </div>
               <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                <div className="bg-emerald-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${studentStats.subjectProgress.science}%` }} />
+                <div className="bg-upsaffron-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${studentStats.subjectProgress.science}%` }} />
               </div>
               <div className="text-[11px] text-slate-400">Nutrition in Plants: Completed</div>
             </div>
@@ -411,10 +411,10 @@ export function StudentView({
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
               <div className="flex justify-between items-center text-xs font-bold">
                 <span className="text-slate-900">English</span>
-                <span className="text-emerald-700 font-black">{studentStats.subjectProgress.english}%</span>
+                <span className="text-sky-700 font-black">{studentStats.subjectProgress.english}%</span>
               </div>
               <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                <div className="bg-emerald-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${studentStats.subjectProgress.english}%` }} />
+                <div className="bg-sky-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${studentStats.subjectProgress.english}%` }} />
               </div>
               <div className="text-[11px] text-slate-400">Basic Grammar: In progress</div>
             </div>
@@ -426,9 +426,9 @@ export function StudentView({
       <div className="fixed bottom-6 right-6 z-30">
         <button
           onClick={onOpenAiSaathi}
-          className="flex items-center gap-2.5 bg-slate-900 hover:bg-emerald-600 text-white px-5 py-3 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 border border-slate-700"
+          className="flex items-center gap-2.5 bg-upnavy-900 hover:bg-upsaffron-600 text-white px-5 py-3 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 border border-upnavy-700"
         >
-          <Sparkles className="w-4 h-4 text-emerald-400 animate-spin" />
+          <Sparkles className="w-4 h-4 text-upsaffron-400 animate-spin" />
           <span className="text-xs font-bold">Ask AI Saathi</span>
         </button>
       </div>

@@ -9,11 +9,11 @@ export function SystemArchitectureModal({ isOpen, onClose, lang }) {
       <div className="bg-white rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 max-h-[92vh] overflow-y-auto">
         <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-              <Layers className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-upnavy-100 text-upnavy-800 border border-upnavy-200 flex items-center justify-center font-bold">
+              <Layers className="w-5 h-5 text-upnavy-800" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-upnavy-950">
                 Major Project Technical Architecture & Viva Reference
               </h2>
               <p className="text-xs text-slate-500">
@@ -33,10 +33,10 @@ export function SystemArchitectureModal({ isOpen, onClose, lang }) {
           {/* Decoupled Flow Card */}
           <div className="p-4 rounded-xl bg-slate-900 text-white space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider">
+              <span className="text-upsaffron-400 font-bold text-xs uppercase tracking-wider">
                 End-to-End Request Pipeline
               </span>
-              <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-400/30">
+              <span className="text-[10px] bg-upsaffron-500/20 text-upsaffron-300 px-2 py-0.5 rounded border border-upsaffron-400/30">
                 Secure & Scalable
               </span>
             </div>

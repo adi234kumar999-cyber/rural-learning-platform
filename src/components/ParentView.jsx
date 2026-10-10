@@ -61,11 +61,11 @@ export function ParentView({ lang }) {
       {/* Overview Card */}
       <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-xs space-y-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-bold">
-            <Smartphone className="w-5 h-5 text-amber-600" />
+          <div className="w-10 h-10 rounded-2xl bg-upsaffron-50 text-upsaffron-700 border border-upsaffron-200 flex items-center justify-center font-bold">
+            <Smartphone className="w-5 h-5 text-upsaffron-600" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-900">
+            <h2 className="text-lg font-black text-upnavy-950">
               Low-Tech Vernacular SMS & IVR Portal
             </h2>
             <p className="text-xs text-slate-500">

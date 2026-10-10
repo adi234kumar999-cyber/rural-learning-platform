@@ -107,12 +107,12 @@ export function TeacherView({ lang }) {
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/60">
+            <span className="text-xs font-bold text-upnavy-900 bg-upnavy-100/80 px-3 py-1 rounded-full border border-upnavy-200">
               Teacher Analytics
             </span>
             <span className="text-xs text-slate-400">Class 7A • Math & Science</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-black text-upnavy-950 tracking-tight">
             Mr. R.K. Sharma
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
@@ -123,15 +123,15 @@ export function TeacherView({ lang }) {
         <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-2xl text-xs font-semibold self-start sm:self-auto">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-4 py-2 rounded-xl transition ${activeTab === 'overview' ? 'bg-white text-slate-900 shadow-xs font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+            className={`px-4 py-2 rounded-xl transition ${activeTab === 'overview' ? 'bg-upnavy-800 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-upnavy-900'}`}
           >
             Class Overview
           </button>
           <button
             onClick={() => setActiveTab('generator')}
-            className={`px-4 py-2 rounded-xl transition flex items-center gap-1.5 ${activeTab === 'generator' ? 'bg-white text-emerald-800 shadow-xs font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+            className={`px-4 py-2 rounded-xl transition flex items-center gap-1.5 ${activeTab === 'generator' ? 'bg-upnavy-800 text-white shadow-xs font-bold' : 'text-slate-600 hover:text-upnavy-900'}`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <Sparkles className="w-3.5 h-3.5 text-upsaffron-400" />
             <span>AI Quiz Generator</span>
           </button>
         </div>
@@ -142,19 +142,19 @@ export function TeacherView({ lang }) {
         <div className="bg-white p-5 rounded-3xl border border-slate-200/70 shadow-xs">
           <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
             <span>Enrolled Students</span>
-            <Users className="w-4 h-4 text-emerald-600" />
+            <Users className="w-4 h-4 text-upnavy-800" />
           </div>
-          <div className="text-2xl font-black text-slate-900">42</div>
+          <div className="text-2xl font-black text-upnavy-950">42</div>
           <div className="text-[11px] text-slate-400 font-medium mt-1">Class 7A Cohort</div>
         </div>
 
         <div className="bg-white p-5 rounded-3xl border border-slate-200/70 shadow-xs">
           <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
             <span>Class Average</span>
-            <BarChart3 className="w-4 h-4 text-amber-600" />
+            <BarChart3 className="w-4 h-4 text-upsaffron-600" />
           </div>
-          <div className="text-2xl font-black text-amber-700">68%</div>
-          <div className="text-[11px] text-emerald-600 font-semibold mt-1">+6% this month</div>
+          <div className="text-2xl font-black text-upsaffron-600">68%</div>
+          <div className="text-[11px] text-upnavy-800 font-bold mt-1">+6% this month</div>
         </div>
 
         <div className="bg-white p-5 rounded-3xl border border-slate-200/70 shadow-xs">
@@ -183,14 +183,14 @@ export function TeacherView({ lang }) {
           <div className="bg-white p-6 rounded-3xl border border-slate-200/70 shadow-xs space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-bold text-slate-900">
+                <h3 className="text-base font-bold text-upnavy-950">
                   Class-Wide Weak Topics Heatmap
                 </h3>
                 <p className="text-xs text-slate-500">
                   Calculated automatically from student diagnostic tests and practice quizzes
                 </p>
               </div>
-              <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+              <span className="text-xs font-bold text-upnavy-900 bg-upnavy-100 px-3 py-1 rounded-full border border-upnavy-200">
                 AI Diagnostics
               </span>
             </div>
@@ -218,13 +218,13 @@ export function TeacherView({ lang }) {
                 <p className="text-[11px] text-slate-600">22 students need practice converting fractions to %.</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 space-y-2">
+              <div className="p-4 rounded-2xl bg-upnavy-50/60 border border-upnavy-200/80 space-y-2">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-emerald-950">Decimals (दशमलव)</span>
-                  <span className="font-black text-emerald-700">18% Weak</span>
+                  <span className="font-bold text-upnavy-950">Decimals (दशमलव)</span>
+                  <span className="font-black text-upnavy-800">18% Weak</span>
                 </div>
-                <div className="w-full bg-emerald-200/70 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-emerald-600 h-1.5 rounded-full" style={{ width: '18%' }} />
+                <div className="w-full bg-upnavy-200/70 h-1.5 rounded-full overflow-hidden">
+                  <div className="bg-upnavy-800 h-1.5 rounded-full" style={{ width: '18%' }} />
                 </div>
                 <p className="text-[11px] text-slate-600">Majority mastered decimal place additions.</p>
               </div>
@@ -286,8 +286,8 @@ export function TeacherView({ lang }) {
                             disabled={isAssigned}
                             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-xs ${
                               isAssigned
-                                ? 'bg-emerald-50 text-emerald-800 border border-emerald-300'
-                                : 'bg-slate-900 hover:bg-emerald-600 text-white active:scale-95'
+                                ? 'bg-upnavy-100 text-upnavy-900 border border-upnavy-300'
+                                : 'bg-upsaffron-600 hover:bg-upsaffron-700 text-white shadow-upsaffron-600/30 active:scale-95'
                             }`}
                           >
                             {isAssigned ? 'Assigned ✓' : 'Assign Quiz'}
@@ -307,7 +307,7 @@ export function TeacherView({ lang }) {
       {activeTab === 'generator' && (
         <div className="bg-white rounded-3xl border border-slate-200/70 p-6 sm:p-8 shadow-xs space-y-6 animate-fadeIn">
           <div>
-            <h3 className="text-lg font-bold text-slate-900">
+            <h3 className="text-lg font-bold text-upnavy-950">
               AI Classroom Question Generator
             </h3>
             <p className="text-xs text-slate-500">
@@ -346,7 +346,7 @@ export function TeacherView({ lang }) {
               <button
                 type="submit"
                 disabled={isGenerating}
-                className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition active:scale-95 disabled:opacity-50"
+                className="w-full py-2.5 px-4 rounded-xl bg-upsaffron-600 hover:bg-upsaffron-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs shadow-upsaffron-600/30 transition active:scale-95 disabled:opacity-50"
               >
                 <Sparkles className={`w-3.5 h-3.5 ${isGenerating ? 'animate-spin' : ''}`} />
                 <span>{isGenerating ? 'Generating...' : 'Generate Questions'}</span>
@@ -357,7 +357,7 @@ export function TeacherView({ lang }) {
           {/* Generated Questions List */}
           <div className="space-y-3 pt-2">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-800">Generated Questions for {topic}</span>
+              <span className="text-xs font-bold text-upnavy-950">Generated Questions for {topic}</span>
               <button
                 onClick={handleCopyQuestions}
                 className="text-xs text-slate-600 hover:text-slate-900 flex items-center gap-1 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition font-semibold"
@@ -378,7 +378,7 @@ export function TeacherView({ lang }) {
                     </div>
                   ))}
                 </div>
-                <div className="text-[11px] text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                <div className="text-[11px] text-upnavy-950 bg-upnavy-50/90 px-3 py-1.5 rounded-xl border border-upnavy-200">
                   <strong>Answer:</strong> {gq.answer} • <em>{gq.explanation}</em>
                 </div>
               </div>
