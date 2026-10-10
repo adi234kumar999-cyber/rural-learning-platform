@@ -29,7 +29,7 @@ export function AuthModal({ isOpen, onClose, lang, onLoginSuccess }) {
   const [studentName, setStudentName] = useState('');
   const [selectedGrade, setSelectedGrade] = useState('Class 7');
   const [schoolName, setSchoolName] = useState('Govt Model Upper Primary School');
-  const [regLanguage, setRegLanguage] = useState(lang || 'hi');
+  const [regLanguage, setRegLanguage] = useState(lang || 'en');
   const [otpSent, setOtpSent] = useState(false);
   const [otpVal, setOtpVal] = useState('');
 

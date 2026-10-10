@@ -26,7 +26,7 @@ export function App() {
   });
 
   const [role, setRole] = useState('student'); // 'student' | 'teacher' | 'parent' | 'admin'
-  const [lang, setLang] = useState('hi'); // default to 'hi' to highlight vernacular rural focus
+  const [lang, setLang] = useState('en'); // default language is English
   const [isOffline, setIsOffline] = useState(false);
   const [isLowData, setIsLowData] = useState(true); // default to low-data mode
   const [pendingSyncCount, setPendingSyncCount] = useState(1);
