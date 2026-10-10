@@ -160,7 +160,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-amber-50/25 text-slate-800">
+    <div className="min-h-screen flex flex-col bg-slate-50/60 text-slate-900 font-sans">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed top-16 right-4 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl border border-slate-700 text-xs flex items-center gap-2 animate-bounce">

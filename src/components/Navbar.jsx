@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Wifi, 
   WifiOff, 
   Zap, 
   Globe, 
-  UserCheck, 
   Layers, 
-  Download, 
-  RefreshCw,
-  Sparkles,
-  BookOpen,
-  LogIn,
-  LogOut,
-  User
+  RefreshCw, 
+  Sparkles, 
+  BookOpen, 
+  LogIn, 
+  LogOut, 
+  ChevronDown,
+  HardDrive
 } from 'lucide-react';
 import { translations, supportedLanguages } from '../data/mockData';
 
@@ -35,126 +34,137 @@ export function Navbar({
   onOpenArchitecture
 }) {
   const t = translations[lang] || translations['en'];
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  // Close profile dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsProfileMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-amber-200/60 shadow-sm transition-all">
-      {/* Top Emergency / Rural Network Info Bar */}
-      <div className={`px-4 py-1.5 text-xs font-medium flex items-center justify-between transition-colors ${
-        isOffline 
-          ? 'bg-amber-600 text-amber-50' 
-          : isLowData 
-            ? 'bg-emerald-700 text-emerald-50' 
-            : 'bg-gradient-to-r from-emerald-800 to-teal-900 text-white'
-      }`}>
-        <div className="flex items-center gap-2 max-w-7xl mx-auto w-full justify-between">
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 font-semibold">
-              {isOffline ? (
-                <>
-                  <WifiOff className="w-3.5 h-3.5 text-amber-200 animate-pulse" />
-                  <span>{t.offline} (Local-First IndexedDB Active)</span>
-                </>
-              ) : (
-                <>
-                  <Wifi className="w-3.5 h-3.5 text-emerald-300" />
-                  <span>{t.online} • Rural 2G/3G Bandwidth Engine</span>
-                </>
-              )}
-            </span>
-
-            {isLowData && (
-              <span className="hidden sm:inline-flex items-center gap-1 bg-black/20 px-2 py-0.5 rounded text-[11px]">
-                <Zap className="w-3 h-3 text-amber-300" />
-                <span>Text+Audio Mode (&lt;40 KB/lesson)</span>
+    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-xs transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        
+        {/* Left: Brand + Role Navigation Pills */}
+        <div className="flex items-center gap-6">
+          {/* Logo */}
+          <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => setRole('student')}>
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-sm shadow-emerald-600/30">
+              <BookOpen className="w-5 h-5 stroke-[2.2]" />
+            </div>
+            <div>
+              <span className="text-lg font-black tracking-tight text-slate-900 font-sans leading-none">
+                Gyan<span className="text-emerald-600">Setu</span>
               </span>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 sm:gap-4">
-            {pendingSyncCount > 0 && (
-              <button
-                onClick={onSyncNow}
-                className="flex items-center gap-1 bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold px-2 py-0.5 rounded text-[11px] shadow transition active:scale-95 animate-pulse"
-                title="Click to push offline quiz results to school database"
-              >
-                <RefreshCw className="w-3 h-3 animate-spin" />
-                <span>{pendingSyncCount} {t.offlineSyncPending || 'Pending Sync'}</span>
-              </button>
-            )}
-
-            <button 
-              onClick={onOpenArchitecture}
-              className="text-[11px] text-amber-200 hover:text-white underline decoration-dotted flex items-center gap-1"
-            >
-              <Layers className="w-3 h-3" />
-              <span className="hidden md:inline">Project Architecture (Major Viva)</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
-        {/* Brand */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-600/20">
-            <BookOpen className="w-6 h-6" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-sans">
-                {t.appName}
-              </h1>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300/60">
-                JWT Auth
+              <span className="block text-[10px] text-slate-400 font-medium tracking-tight">
+                Rural EdTech
               </span>
             </div>
-            <p className="text-xs text-slate-500 hidden sm:block">
-              {t.tagline}
-            </p>
           </div>
+
+          {/* Segmented Role Navigation */}
+          <nav className="hidden md:flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200/60 text-xs">
+            <button
+              onClick={() => setRole('student')}
+              className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
+                role === 'student'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
+                  : 'text-slate-500 hover:text-slate-900'
+              }`}
+            >
+              Student
+            </button>
+            <button
+              onClick={() => setRole('teacher')}
+              className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
+                role === 'teacher'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
+                  : 'text-slate-500 hover:text-slate-900'
+              }`}
+            >
+              Teacher
+            </button>
+            <button
+              onClick={() => setRole('parent')}
+              className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
+                role === 'parent'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
+                  : 'text-slate-500 hover:text-slate-900'
+              }`}
+            >
+              Parent SMS
+            </button>
+            <button
+              onClick={() => setRole('admin')}
+              className={`px-3.5 py-1.5 rounded-full font-semibold transition-all duration-150 ${
+                role === 'admin'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
+                  : 'text-slate-500 hover:text-slate-900'
+              }`}
+            >
+              Admin
+            </button>
+          </nav>
         </div>
 
-        {/* Action Controls */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-          {/* Low Data Mode Toggle */}
-          <button
-            onClick={() => setIsLowData(!isLowData)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border transition shadow-sm ${
-              isLowData
-                ? 'bg-amber-100 text-amber-900 border-amber-300 ring-2 ring-amber-400/40'
-                : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-            }`}
-            title="Toggle between rich media and ultra-lightweight text+audio for slow internet"
-          >
-            <Zap className={`w-3.5 h-3.5 ${isLowData ? 'text-amber-600 fill-amber-500' : 'text-slate-400'}`} />
-            <span className="hidden md:inline">{isLowData ? t.lowDataOn : t.lowDataOff}</span>
-            <span className="md:hidden">{isLowData ? 'Low Data' : 'Normal'}</span>
-          </button>
+        {/* Right: Modern Compact Utilities */}
+        <div className="flex items-center gap-2.5">
+          {/* Offline Sync Alert Pill (Only shown if pending syncs) */}
+          {pendingSyncCount > 0 && (
+            <button
+              onClick={onSyncNow}
+              className="hidden sm:flex items-center gap-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-900 border border-amber-300/80 px-2.5 py-1.5 rounded-full text-[11px] font-bold transition active:scale-95 animate-pulse"
+              title="Click to push offline quiz results to school database"
+            >
+              <RefreshCw className="w-3 h-3 text-amber-700 animate-spin" />
+              <span>{pendingSyncCount} Sync Pending</span>
+            </button>
+          )}
 
-          {/* Network Simulator Toggle */}
+          {/* Network Simulator Indicator Button */}
           <button
             onClick={() => setIsOffline(!isOffline)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border transition shadow-sm ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
               isOffline
-                ? 'bg-rose-100 text-rose-900 border-rose-300 ring-2 ring-rose-400/40'
-                : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
+                ? 'bg-rose-50 text-rose-800 border-rose-200 hover:bg-rose-100 shadow-xs'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200/80'
             }`}
-            title="Simulate losing internet to demo offline PWA functionality"
+            title="Click to toggle simulated offline mode"
           >
-            {isOffline ? <WifiOff className="w-3.5 h-3.5 text-rose-600" /> : <Wifi className="w-3.5 h-3.5 text-emerald-600" />}
-            <span>{isOffline ? 'Offline (Simulated)' : 'Online (Demo)'}</span>
+            <span className={`w-2 h-2 rounded-full ${isOffline ? 'bg-rose-500 animate-ping' : 'bg-emerald-500'}`} />
+            <span className="hidden sm:inline font-semibold">{isOffline ? 'Offline' : 'Online'}</span>
           </button>
 
-          {/* Regional Language Dropdown Selector */}
+          {/* Minimalist Low Data Toggle Pill */}
+          <button
+            onClick={() => setIsLowData(!isLowData)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
+              isLowData
+                ? 'bg-amber-50 text-amber-900 border-amber-300/80 shadow-xs'
+                : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200/80'
+            }`}
+            title="Low Data Mode: saves 98% bandwidth with audio & text only"
+          >
+            <Zap className={`w-3.5 h-3.5 ${isLowData ? 'text-amber-600 fill-amber-500' : 'text-slate-400'}`} />
+            <span className="hidden sm:inline">{isLowData ? 'Low Data' : 'Standard'}</span>
+          </button>
+
+          {/* Minimal Language Select */}
           <div className="relative inline-flex items-center">
-            <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 transition shadow-sm">
-              <Globe className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+            <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 transition cursor-pointer">
+              <Globe className="w-3.5 h-3.5 text-slate-500 shrink-0" />
               <select
                 value={lang}
                 onChange={(e) => setLang(e.target.value)}
-                className="bg-transparent text-xs font-bold text-slate-800 outline-none cursor-pointer pr-1"
-                aria-label="Select Regional Language"
+                className="bg-transparent text-xs font-semibold text-slate-800 outline-none cursor-pointer pr-1"
+                aria-label="Select Language"
               >
                 {supportedLanguages.map((l) => (
                   <option key={l.code} value={l.code} className="text-slate-900 font-medium">
@@ -165,82 +175,121 @@ export function Navbar({
             </div>
           </div>
 
-          {/* Role Switcher Pills */}
-          <div className="relative inline-flex items-center rounded-lg bg-slate-100 p-0.5 border border-slate-300 text-xs">
-            <button
-              onClick={() => setRole('student')}
-              className={`px-2 py-1 font-semibold rounded-md transition ${
-                role === 'student'
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              🎓 Student
-            </button>
-            <button
-              onClick={() => setRole('teacher')}
-              className={`px-2 py-1 font-semibold rounded-md transition ${
-                role === 'teacher'
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              👨‍🏫 Teacher
-            </button>
-            <button
-              onClick={() => setRole('parent')}
-              className={`px-2 py-1 font-semibold rounded-md transition ${
-                role === 'parent'
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              📱 Parent
-            </button>
-            <button
-              onClick={() => setRole('admin')}
-              className={`px-2 py-1 font-semibold rounded-md transition ${
-                role === 'admin'
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              🏛️ Admin
-            </button>
-          </div>
-
-          {/* User Profile / Login Gateway Button */}
-          {currentUser ? (
-            <div className="flex items-center gap-1.5 pl-1.5 border-l border-slate-200">
+          {/* User Profile / Menu Dropdown */}
+          <div className="relative" ref={menuRef}>
+            {currentUser ? (
+              <button
+                onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                className="flex items-center gap-2 p-1 pl-2 bg-slate-50 hover:bg-slate-100 border border-slate-200/80 rounded-full transition text-xs text-slate-800 font-semibold"
+              >
+                <span className="hidden md:inline font-bold">{currentUser.name.split(' ')[0]}</span>
+                <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs shadow-2xs">
+                  {currentUser.avatar}
+                </div>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 mr-1" />
+              </button>
+            ) : (
               <button
                 onClick={onOpenAuthModal}
-                className="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 px-2.5 py-1.5 rounded-lg text-xs font-bold text-emerald-950 transition shadow-sm"
-                title="Switch Account / Login Portal"
+                className="px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition active:scale-95 flex items-center gap-1.5"
               >
-                <span>{currentUser.avatar}</span>
-                <span className="hidden sm:inline">{currentUser.name.split(' ')[0]}</span>
-                <span className="text-[10px] text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded font-normal hidden md:inline">
-                  {currentUser.role}
-                </span>
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Sign In</span>
               </button>
-              <button
-                onClick={onLogout}
-                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition"
-                title="Log Out"
-              >
-                <LogOut className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={onOpenAuthModal}
-              className="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-md active:scale-95 transition"
-            >
-              <LogIn className="w-3.5 h-3.5" />
-              <span>{lang === 'hi' ? 'लॉगिन' : 'Sign In'}</span>
-            </button>
-          )}
+            )}
+
+            {/* Profile Dropdown Popover */}
+            {isProfileMenuOpen && currentUser && (
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 z-50 animate-fadeIn text-xs">
+                <div className="p-3 border-b border-slate-100 mb-1">
+                  <div className="font-bold text-slate-900 text-sm">{currentUser.name}</div>
+                  <div className="text-[11px] text-emerald-700 font-medium capitalize">{currentUser.role} Account</div>
+                  {currentUser.school && (
+                    <div className="text-[10px] text-slate-400 truncate mt-0.5">{currentUser.school}</div>
+                  )}
+                </div>
+
+                <div className="space-y-0.5">
+                  <button
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onOpenDownloads();
+                    }}
+                    className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-50 text-slate-700 flex items-center justify-between"
+                  >
+                    <span>Offline Storage</span>
+                    <span className="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-600 font-semibold">
+                      {downloadedCount} cached
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onOpenArchitecture();
+                    }}
+                    className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-50 text-slate-700 flex items-center gap-2"
+                  >
+                    <Layers className="w-3.5 h-3.5 text-slate-400" />
+                    <span>Viva Architecture Deck</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onOpenAuthModal();
+                    }}
+                    className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-50 text-emerald-700 font-semibold flex items-center gap-2"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Switch Role / Demo</span>
+                  </button>
+
+                  <div className="pt-1 border-t border-slate-100">
+                    <button
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                        onLogout();
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-rose-50 text-rose-600 font-semibold flex items-center gap-2"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      <span>Log Out</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+      </div>
+
+      {/* Mobile Role Switcher (Shown only on small screens) */}
+      <div className="md:hidden border-t border-slate-100 px-4 py-2 bg-slate-50 flex items-center justify-between text-xs overflow-x-auto gap-2">
+        <button
+          onClick={() => setRole('student')}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'student' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+        >
+          Student
+        </button>
+        <button
+          onClick={() => setRole('teacher')}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'teacher' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+        >
+          Teacher
+        </button>
+        <button
+          onClick={() => setRole('parent')}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'parent' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+        >
+          Parent
+        </button>
+        <button
+          onClick={() => setRole('admin')}
+          className={`px-3 py-1 rounded-full font-semibold shrink-0 ${role === 'admin' ? 'bg-emerald-600 text-white' : 'text-slate-600'}`}
+        >
+          Admin
+        </button>
       </div>
     </header>
   );
