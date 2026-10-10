@@ -1,7 +1,61 @@
 import React from 'react';
 import { Smartphone, MessageSquare, PhoneCall, CheckCheck, Clock, Award, AlertCircle } from 'lucide-react';
+import { translations, supportedLanguages } from '../data/mockData';
 
 export function ParentView({ lang }) {
+  const t = translations[lang] || translations['en'];
+  const langConfig = supportedLanguages.find(l => l.code === lang);
+
+  const getSms1 = () => {
+    switch (lang) {
+      case 'mr':
+        return 'प्रिय पालक, तुमच्या मुलाने रोहनने आज गणितात 80% गुण मिळवले. त्याने अपूर्णांकांचा (Fractions) पाठ पूर्ण केला. अभिनंदन!';
+      case 'bn':
+        return 'প্রিয় অভিভাবক, আপনার সন্তান রোহন আজ গণিতে ৮০% নম্বর পেয়েছে। সে ভগ্নাংশের (Fractions) পাঠ সম্পন্ন করেছে। সাবাশ!';
+      case 'te':
+        return 'ప్రియమైన తల్లిదండ్రులకు, మీ అబ్బాయి రోహన్ ఈరోజు గణితంలో 80% మార్కులు సాధించాడు. అతను భిన్నాల (Fractions) పాఠాన్ని పూర్తి చేశాడు!';
+      case 'ta':
+        return 'அன்புள்ள பெற்றோரே, உங்கள் மகன் ரோஹன் இன்று கணிதத்தில் 80% மதிப்பெண்கள் பெற்றுள்ளார். பின்னங்கள் (Fractions) பாடத்தை வெற்றிகரமாக முடித்துள்ளார்!';
+      case 'gu':
+        return 'પ્રિય વાલી, આપના પુત્ર રોહને આજે ગણિતમાં 80% ગુણ મેળવ્યા છે. તેણે અપૂર્ણાંકનો (Fractions) પાઠ પૂર્ણ કર્યો છે. ખૂબ સરસ!';
+      case 'kn':
+        return 'ಆತ್ಮೀಯ ಪೋಷಕರೇ, ನಿಮ್ಮ ಮಗ ರೋಹನ್ ಇಂದು ಗಣಿತದಲ್ಲಿ 80% ಅಂಕಗಳನ್ನು ಗಳಿಸಿದ್ದಾನೆ. ಭಿನ್ನರಾಶಿಗಳ (Fractions) ಪಾಠವನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದ್ದಾನೆ!';
+      case 'pa':
+        return 'ਪਿਆਰੇ ਮਾਪਿਓ, ਤੁਹਾਡੇ ਬੇਟੇ ਰੋਹਨ ਨੇ ਅੱਜ ਗਣਿਤ ਵਿੱਚ 80% ਅੰਕ ਪ੍ਰਾਪਤ ਕੀਤੇ। ਉਸਨੇ ਭਿੰਨਾਂ (Fractions) ਦਾ ਪਾਠ ਪੂਰਾ ਕਰ ਲਿਆ ਹੈ। ਸ਼ਾਬਾਸ਼!';
+      case 'od':
+        return 'ପ୍ରିୟ ଅଭିଭାବକ, ଆପଣଙ୍କ ପୁଅ ରୋହନ ଆଜି ଗଣିତରେ ୮୦% ନମ୍ବର ପାଇଛି। ସେ ଭଗ୍ନାଂଶ (Fractions) ପାଠ ସମ୍ପୂର୍ଣ୍ଣ କରିଛି!';
+      case 'hi':
+        return 'प्रिय अभिभावक, आपके पुत्र रोहन ने आज गणित में 80% अंक प्राप्त किए। उन्होंने भिन्न (Fractions) का पाठ पूरा किया। शाबाश!';
+      default:
+        return 'Dear Parent, your child Rohan scored 80% in Math today after completing the Fractions module. Keep up the encouragement!';
+    }
+  };
+
+  const getSms2 = () => {
+    switch (lang) {
+      case 'mr':
+        return 'नमस्ते. रोहनला टक्केवारीमध्ये (Percentages) थोडा सराव हवा आहे. शाळेने त्याच्या डिव्हाइसवर ऑफलाइन सराव चाचणी सेव्ह केली आहे.';
+      case 'bn':
+        return 'নমস্কার। রোহনের শতকরা (Percentages) অধ্যায়ে সামান্য অতিরিক্ত অনুশীলনের প্রয়োজন। অফলাইনে অনুশীলনের জন্য কুইজ ডিভাইসে সংরক্ষিত হয়েছে।';
+      case 'te':
+        return 'నమస్కారం. రోహన్‌కు శాతాలు (Percentages) అంశంలో అదనపు సాధన అవసరం. ఆఫ్‌లైన్ క్విజ్ డివైజ్‌లో సేవ్ చేయబడింది.';
+      case 'ta':
+        return 'வணக்கம். ரோஹனுக்கு சதவீதம் (Percentages) பாடத்தில் கூடுதல் பயிற்சி தேவைப்படுகிறது. ஆஃப்லைன் வினாடி வினா சாதனத்தில் சேமிக்கப்பட்டுள்ளது.';
+      case 'gu':
+        return 'નમસ્તે. રોહનને ટકાવારીમાં (Percentages) થોડી વધુ પ્રેક્ટિસની જરૂર છે. શાળાએ ડિવાઇસમાં ઑફલાઇન ક્વિઝ સેવ કરી આપી છે.';
+      case 'kn':
+        return 'ನಮಸ್ಕಾರ. ರೋಹನ್‌ಗೆ ಶೇಕಡಾವಾರು (Percentages) ವಿಷಯದಲ್ಲಿ ಹೆಚ್ಚಿನ ಅಭ್ಯಾಸ ಬೇಕಿದೆ. ಆಫ್‌ಲೈನ್ ರಸಪ್ರಶ್ನೆ ಸಾಧನದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ.';
+      case 'pa':
+        return 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ। ਰੋਹਨ ਨੂੰ ਪ੍ਰਤੀਸ਼ਤ (Percentages) ਵਿੱਚ ਕੁਝ ਹੋਰ ਅਭਿਆਸ ਦੀ ਲੋੜ ਹੈ। ਸਕੂਲ ਨੇ ਆਫਲਾਈਨ ਕਵਿਜ਼ ਡਿਵਾਈਸ ਵਿੱਚ ਸੇਵ ਕਰ ਦਿੱਤੀ ਹੈ।';
+      case 'od':
+        return 'ନମସ୍କାର। ରୋହନକୁ ଶତକଡ଼ା (Percentages) ପାଠରେ କିଛି ଅଧିକ ଅଭ୍ୟାସ ଦରକାର। ଡିଭାଇସ୍‌ରେ ଅଫଲାଇନ୍ କ୍ୱିଜ୍ ସେଭ୍ କରାଯାଇଛି।';
+      case 'hi':
+        return 'नमस्ते। रोहन को प्रतिशत (Percentages) में थोड़ी कठिनाई आ रही है। स्कूल ने उनके फोन/टैबलेट में ऑफ़लाइन अभ्यास क्विज़ सेव कर दिया है।';
+      default:
+        return 'Greetings. Rohan requires extra practice with Percentages. School has cached remedial offline quizzes onto their shared device.';
+    }
+  };
+
   return (
     <div className="max-w-2xl mx-auto space-y-6 pb-20">
       {/* Intro */}
@@ -12,17 +66,15 @@ export function ParentView({ lang }) {
           </div>
           <div>
             <h2 className="text-base font-bold text-slate-900">
-              {lang === 'hi' ? 'अभिभावक दृश्य (कम-इंटरनेट SMS / IVR रिपोर्ट)' : 'Parent Low-Tech SMS & Voice Portal'}
+              {t.parentRole} • Regional SMS Broadcast
             </h2>
             <p className="text-xs text-slate-500">
-              {lang === 'hi' ? 'स्मार्टफोन न होने पर भी साधारण फोन पर हिंदी में प्रगति रिपोर्ट' : 'Automated weekly updates for basic feature phones without internet'}
+              {langConfig ? langConfig.name : 'Regional'} Language SMS updates on basic feature phones
             </p>
           </div>
         </div>
         <p className="text-xs text-slate-600 leading-relaxed bg-amber-50 p-3 rounded-xl border border-amber-200">
-          {lang === 'hi' 
-            ? '💡 ग्रामीण क्षेत्रों में माता-पिता के पास हमेशा इंटरनेट या स्मार्टफोन नहीं होता। ज्ञानसेतु प्रत्येक शनिवार को विद्यार्थी की प्रगति का मुफ्त SMS और वॉइस कॉल (IVR) अभिभावक के सामान्य कीपैड फोन पर भेजता है।'
-            : '💡 Rural innovation: To bridge the digital divide for parents with basic keypad phones, GyanSetu delivers automated vernacular SMS and IVR voice summaries of their child\'s school progress.'}
+          💡 <strong>Rural Innovation:</strong> To bridge the digital divide for parents with basic keypad phones without internet, GyanSetu automatically broadcasts vernacular SMS & IVR voice summaries in their preferred mother tongue.
         </p>
       </div>
 
@@ -39,14 +91,12 @@ export function ParentView({ lang }) {
             <div className="flex items-center justify-between text-[11px] text-emerald-400 font-bold">
               <span className="flex items-center gap-1.5">
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>SMS from: GyanSetu-School</span>
+                <span>SMS from: GyanSetu-GovtSchool</span>
               </span>
               <span className="text-slate-400 text-[10px]">Today</span>
             </div>
             <p className="text-xs text-slate-200 leading-relaxed font-sans">
-              {lang === 'hi'
-                ? 'प्रिय अभिभावक, आपके पुत्र रोहन ने आज गणित में 80% अंक प्राप्त किए। उन्होंने भिन्न (Fractions) का पाठ पूरा किया। शाबाश!'
-                : 'Dear Parent, your child Rohan scored 80% in Math today after completing the Fractions module. Keep up the encouragement!'}
+              {getSms1()}
             </p>
             <div className="flex justify-end text-[10px] text-slate-400 flex items-center gap-1">
               <CheckCheck className="w-3 h-3 text-emerald-400" />
@@ -64,9 +114,7 @@ export function ParentView({ lang }) {
               <span className="text-slate-400 text-[10px]">Yesterday</span>
             </div>
             <p className="text-xs text-slate-200 leading-relaxed font-sans">
-              {lang === 'hi'
-                ? 'नमस्ते। रोहन को प्रतिशत (Percentages) में थोड़ी कठिनाई आ रही है। स्कूल ने उनके टैबलेट/फोन में ऑफ़लाइन अभ्यास क्विज़ सेव कर दिया है।'
-                : 'Greetings. Rohan requires extra practice with Percentages. School has cached remedial offline quizzes onto their shared device.'}
+              {getSms2()}
             </p>
           </div>
         </div>

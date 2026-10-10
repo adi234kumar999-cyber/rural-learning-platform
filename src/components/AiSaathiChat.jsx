@@ -1,14 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, Send, Bot, User, X, MessageSquare, Volume2, Lightbulb } from 'lucide-react';
-import { prebuiltAiDoubtAnswers } from '../data/mockData';
+import { prebuiltAiDoubtAnswers, getLocalized, translations, supportedLanguages } from '../data/mockData';
 
 export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
+  const t = translations[lang] || translations['en'];
+  const langConfig = supportedLanguages.find(l => l.code === lang);
+
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: lang === 'hi' 
-        ? "नमस्ते रोहन! मैं आपका 'ज्ञान साथी' AI ट्यूटर हूँ। गणित या विज्ञान में कोई भी सवाल पूछें, मैं सरल भाषा और गांव के उदाहरणों के साथ समझाऊंगा।"
-        : "Hello Rohan! I am your 'Gyan Saathi' AI Tutor. Ask me any doubt in Math or Science, and I will explain with simple real-world examples."
+      text: lang === 'en' 
+        ? "Hello Rohan! I am your 'Gyan Saathi' AI Tutor. Ask me any doubt in Math or Science, and I will explain with simple real-world examples."
+        : `नमस्ते रोहन! मी/मी/હું/నేను ನಿಮ್ಮ 'ज्ञान साथी' AI ट्यूटर आहे/છું/ఉన్నాను. Ask me any doubt in ${langConfig ? langConfig.name : 'your language'}!`
     }
   ]);
   const [inputVal, setInputVal] = useState('');
@@ -23,14 +26,10 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
     scrollToBottom();
   }, [messages, isTyping]);
 
-  const quickPrompts = lang === 'hi' ? [
-    "भिन्न (Fractions) क्या होते हैं?",
-    "पौधे खाना कैसे बनाते हैं?",
-    "प्रतिशत (Percentage) का खेत में क्या काम?"
-  ] : [
-    "What are Fractions?",
-    "How does Photosynthesis work?",
-    "Why do we need Percentages?"
+  const quickPrompts = [
+    "Fractions (अपूर्णांक / भिन्न) क्या हैं?",
+    "Photosynthesis (प्रकाश संश्लेषण) क्या है?",
+    "Percentages (प्रतिशत / टक्केवारी) का उपयोग?"
   ];
 
   const handleSend = (textToSend) => {
@@ -52,11 +51,11 @@ export function AiSaathiChat({ isOpen, onClose, lang, onSpeakText }) {
 
       let reply = "";
       if (matched) {
-        reply = matched.response[lang];
+        reply = getLocalized(matched.response, lang);
       } else {
-        reply = lang === 'hi'
-          ? `शानदार सवाल! "${query}" को समझने के लिए याद रखें: विज्ञान और गणित हमारे आसपास के वातावरण से जुड़े हैं। जैसे खेती में पानी का प्रवाह या हाट-बाजार में हिसाब-किताब। यदि आप इसे और सरल तरीके से समझना चाहते हैं, तो संबंधित अध्याय का ऑडियो सुनें!`
-          : `Great question! To understand "${query}", remember that math and science reflect our natural surroundings—like water flow in irrigation channels or counting sacks of harvest in the village market. Try listening to the audio summary for this chapter!`;
+        reply = lang === 'en'
+          ? `Great question! To understand "${query}", remember that math and science reflect our natural surroundings—like water flow in irrigation channels or counting sacks of harvest in the village market. Try listening to the audio summary for this chapter!`
+          : `शानदार सवाल! "${query}" को समझने के लिए याद रखें: विज्ञान और गणित हमारे आसपास के वातावरण से जुड़े हैं। जैसे खेती में पानी का प्रवाह या हाट-बाजार में हिसाब-किताब।`;
       }
 
       setMessages(prev => [...prev, { sender: 'bot', text: reply }]);

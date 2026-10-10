@@ -11,7 +11,7 @@ import {
   Sparkles,
   BookOpen
 } from 'lucide-react';
-import { translations } from '../data/mockData';
+import { translations, supportedLanguages } from '../data/mockData';
 
 export function Navbar({ 
   role, 
@@ -28,7 +28,7 @@ export function Navbar({
   onOpenDownloads,
   onOpenArchitecture
 }) {
-  const t = translations[lang];
+  const t = translations[lang] || translations['en'];
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-amber-200/60 shadow-sm transition-all">
@@ -51,7 +51,7 @@ export function Navbar({
               ) : (
                 <>
                   <Wifi className="w-3.5 h-3.5 text-emerald-300" />
-                  <span>{t.online} • Rural 2G/3G Optimized</span>
+                  <span>{t.online} • Rural 2G/3G Bandwidth Engine</span>
                 </>
               )}
             </span>
@@ -72,7 +72,7 @@ export function Navbar({
                 title="Click to push offline quiz results to school database"
               >
                 <RefreshCw className="w-3 h-3 animate-spin" />
-                <span>{pendingSyncCount} {lang === 'hi' ? 'क्विज़ सिंक बाकी' : 'Pending Sync'}</span>
+                <span>{pendingSyncCount} {t.offlineSyncPending || 'Pending Sync'}</span>
               </button>
             )}
 
@@ -100,7 +100,7 @@ export function Navbar({
                 {t.appName}
               </h1>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300/60">
-                Rural EdTech
+                10 Regional Languages
               </span>
             </div>
             <p className="text-xs text-slate-500 hidden sm:block">
@@ -140,15 +140,24 @@ export function Navbar({
             <span>{isOffline ? 'Offline (Simulated)' : 'Online (Demo)'}</span>
           </button>
 
-          {/* Language Switcher */}
-          <button
-            onClick={() => setLang(lang === 'en' ? 'hi' : 'en')}
-            className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 flex items-center gap-1.5 transition"
-            title="Switch Language"
-          >
-            <Globe className="w-3.5 h-3.5 text-slate-600" />
-            <span>{lang === 'en' ? 'हिन्दी' : 'English'}</span>
-          </button>
+          {/* Regional Language Dropdown Selector */}
+          <div className="relative inline-flex items-center">
+            <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 transition shadow-sm">
+              <Globe className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+              <select
+                value={lang}
+                onChange={(e) => setLang(e.target.value)}
+                className="bg-transparent text-xs font-bold text-slate-800 outline-none cursor-pointer pr-1"
+                aria-label="Select Regional Language"
+              >
+                {supportedLanguages.map((l) => (
+                  <option key={l.code} value={l.code} className="text-slate-900 font-medium">
+                    {l.flag} {l.name} ({l.englishName})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
           {/* Role Switcher */}
           <div className="relative inline-flex items-center rounded-lg bg-slate-100 p-0.5 border border-slate-300">
@@ -160,7 +169,7 @@ export function Navbar({
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              🎓 {lang === 'hi' ? 'छात्र' : 'Student'}
+              🎓 {t.studentRole ? t.studentRole.split(' ')[0] : 'Student'}
             </button>
             <button
               onClick={() => setRole('teacher')}
@@ -170,7 +179,7 @@ export function Navbar({
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              👨‍🏫 {lang === 'hi' ? 'अध्यापक' : 'Teacher'}
+              👨‍🏫 {t.teacherRole ? t.teacherRole.split(' ')[0] : 'Teacher'}
             </button>
             <button
               onClick={() => setRole('parent')}
@@ -180,7 +189,7 @@ export function Navbar({
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              📱 {lang === 'hi' ? 'SMS' : 'Parent'}
+              📱 SMS
             </button>
           </div>
         </div>

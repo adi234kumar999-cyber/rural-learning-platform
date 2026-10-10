@@ -14,9 +14,10 @@ import {
   Copy,
   Check
 } from 'lucide-react';
-import { mockStudents } from '../data/mockData';
+import { mockStudents, translations } from '../data/mockData';
 
 export function TeacherView({ lang }) {
+  const t = translations[lang] || translations['en'];
   const [students, setStudents] = useState(mockStudents);
   const [assignedRemedial, setAssignedRemedial] = useState({});
   const [copyStatus, setCopyStatus] = useState(false);

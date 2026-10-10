@@ -10,6 +10,7 @@ import { SystemArchitectureModal } from './components/SystemArchitectureModal';
 import { DownloadsModal } from './components/DownloadsModal';
 import { CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { supportedLanguages } from './data/mockData';
 
 export function App() {
   const [role, setRole] = useState('student'); // 'student' | 'teacher' | 'parent'
@@ -124,7 +125,8 @@ export function App() {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
+      const langConfig = supportedLanguages.find(l => l.code === lang);
+      utterance.lang = langConfig ? langConfig.tts : 'hi-IN';
       utterance.rate = 0.9;
       window.speechSynthesis.speak(utterance);
     }

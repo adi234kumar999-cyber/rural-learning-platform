@@ -14,6 +14,7 @@ import {
   WifiOff
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { getLocalized, supportedLanguages } from '../data/mockData';
 
 export function LessonModal({ 
   chapter, 
@@ -33,7 +34,7 @@ export function LessonModal({
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
 
-  // Web Speech API text-to-speech
+  // Web Speech API text-to-speech with regional language matching
   const handlePlayAudio = () => {
     if ('speechSynthesis' in window) {
       if (isPlayingAudio) {
@@ -43,10 +44,11 @@ export function LessonModal({
       }
 
       window.speechSynthesis.cancel();
-      const textToSpeak = chapter.audioScript[lang] || chapter.audioScript['en'];
+      const textToSpeak = getLocalized(chapter.audioScript, lang);
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       
-      utterance.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
+      const langConfig = supportedLanguages.find(l => l.code === lang);
+      utterance.lang = langConfig ? langConfig.tts : 'hi-IN';
       utterance.rate = 0.9; // clear, gentle speed for rural learners
 
       utterance.onend = () => setIsPlayingAudio(false);
@@ -122,7 +124,7 @@ export function LessonModal({
                 )}
               </div>
               <h2 className="text-base sm:text-lg font-black text-slate-900">
-                {chapter.title[lang]}
+                {getLocalized(chapter.title, lang)}
               </h2>
             </div>
           </div>
@@ -250,7 +252,7 @@ export function LessonModal({
             {/* Lesson Body Content */}
             <div className="prose prose-sm max-w-none text-slate-800 bg-slate-50/70 p-4 sm:p-5 rounded-xl border border-slate-200 leading-relaxed font-sans">
               <div className="whitespace-pre-line text-xs sm:text-sm">
-                {chapter.lowDataContent[lang]}
+                {getLocalized(chapter.lowDataContent, lang)}
               </div>
             </div>
 
@@ -286,7 +288,7 @@ export function LessonModal({
               return (
                 <div key={q.id} className="p-4 rounded-xl border border-slate-200 bg-white shadow-sm space-y-3">
                   <p className="text-xs sm:text-sm font-bold text-slate-800">
-                    {qIdx + 1}. {q.question[lang]}
+                    {qIdx + 1}. {getLocalized(q.question, lang)}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
@@ -323,7 +325,7 @@ export function LessonModal({
                   {quizSubmitted && (
                     <div className="p-2.5 rounded-lg bg-emerald-50/80 border border-emerald-200 text-[11px] text-emerald-950">
                       <strong>{lang === 'hi' ? 'स्पष्टीकरण: ' : 'Explanation: '}</strong>
-                      {q.explanation[lang]}
+                      {getLocalized(q.explanation, lang)}
                     </div>
                   )}
                 </div>

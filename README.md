@@ -15,14 +15,17 @@ Most mainstream e-learning platforms (BYJU'S, Unacademy, Khan Academy, Coursera)
 
 **In Indian rural schools, these assumptions fail.**  
 **GyanSetu** is designed from the ground up with a **rural-first, local-first philosophy**:
-1. **Low-Data Bandwidth Engine:** Reduces data consumption by 98% (switches from heavy 20MB video to structured &lt;40KB text + compressed audio voiceover).
-2. **Offline-First Learning & IndexedDB Sync:** Students can download lessons at school or a community Wi-Fi point, study and attempt quizzes completely offline, and synchronize progress automatically when connectivity returns.
-3. **Diagnostic Baseline Assessment:** Evaluates students on fundamental topics (e.g. Fractions, Decimals, Percentages) and pinpoints specific conceptual gaps.
-4. **AI-Powered Remedial Recommendations:** Rather than forcing every student along an identical path, the AI enforces prerequisite mastery (e.g., *"Master Fractions Chapter 1 before advancing to Percentages"*).
-5. **AI Doubt Saathi:** Vernacular AI assistant answering student queries in simple Hindi/English using relatable village analogies (dividing rotis, measuring farm fields, water tanks).
-6. **Teacher Analytics Dashboard:** Real-time visibility into class averages, class-wide weak topics heatmaps, and flagged *"Students Needing Immediate Attention"* with one-click remedial assignments.
-7. **AI Question Generator for Teachers:** Automatically crafts classroom quiz questions with answer keys and explanations in Hindi and English.
-8. **Parent Feature-Phone Portal:** Generates automated low-tech SMS/IVR updates in Hindi for parents with basic keypad phones.
+1. **Multilingual Vernacular Engine (10 Regional Languages):**
+   - 🇮🇳 **हिन्दी (Hindi)**, 🇬🇧 **English**, 🇮🇳 **मराठी (Marathi)**, 🇮🇳 **বাংলা (Bengali)**, 🇮🇳 **తెలుగు (Telugu)**, 🇮🇳 **தமிழ் (Tamil)**, 🇮🇳 **ગુજરાતી (Gujarati)**, 🇮🇳 **ಕನ್ನಡ (Kannada)**, 🇮🇳 **ਪੰਜਾਬੀ (Punjabi)**, 🇮🇳 **ଓଡ଼ିଆ (Odia)**.
+   - Includes localized Web Speech API Text-to-Speech (TTS) voice narration for emerging readers in their native language!
+2. **Low-Data Bandwidth Engine:** Reduces data consumption by 98% (switches from heavy 20MB video to structured &lt;40KB text + compressed audio voiceover).
+3. **Offline-First Learning & IndexedDB Sync:** Students can download lessons at school or a community Wi-Fi point, study and attempt quizzes completely offline, and synchronize progress automatically when connectivity returns.
+4. **Diagnostic Baseline Assessment:** Evaluates students on fundamental topics (e.g. Fractions, Decimals, Percentages) and pinpoints specific conceptual gaps.
+5. **AI-Powered Remedial Recommendations:** Rather than forcing every student along an identical path, the AI enforces prerequisite mastery (e.g., *"Master Fractions Chapter 1 before advancing to Percentages"*).
+6. **AI Doubt Saathi:** Vernacular AI assistant answering student queries using relatable village analogies (dividing rotis, measuring farm fields, water tanks).
+7. **Teacher Analytics Dashboard:** Real-time visibility into class averages, class-wide weak topics heatmaps, and flagged *"Students Needing Immediate Attention"* with one-click remedial assignments.
+8. **AI Question Generator for Teachers:** Automatically crafts classroom quiz questions with answer keys and explanations.
+9. **Parent Feature-Phone Portal:** Generates automated low-tech SMS/IVR updates in regional languages for parents with basic keypad phones.
 
 ---
 

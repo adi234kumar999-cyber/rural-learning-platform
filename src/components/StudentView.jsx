@@ -16,7 +16,7 @@ import {
   MessageCircle,
   HelpCircle
 } from 'lucide-react';
-import { translations, sampleCourses } from '../data/mockData';
+import { translations, sampleCourses, getLocalized } from '../data/mockData';
 
 export function StudentView({ 
   lang, 
@@ -30,7 +30,7 @@ export function StudentView({
   onOpenAiSaathi,
   studentStats
 }) {
-  const t = translations[lang];
+  const t = translations[lang] || translations['en'];
   const [selectedSubject, setSelectedSubject] = useState('all');
   const [filterOfflineOnly, setFilterOfflineOnly] = useState(false);
 
@@ -298,7 +298,7 @@ export function StudentView({
                       <div>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                            {course.title[lang]}
+                            {getLocalized(course.title, lang)}
                           </span>
                           <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
                             <Zap className="w-3 h-3 text-amber-500" />
@@ -307,10 +307,10 @@ export function StudentView({
                         </div>
 
                         <h4 className="text-base font-bold text-slate-900 mb-1">
-                          {chapter.title[lang]}
+                          {getLocalized(chapter.title, lang)}
                         </h4>
                         <p className="text-xs text-slate-600 mb-4 line-clamp-2">
-                          {chapter.summary[lang]}
+                          {getLocalized(chapter.summary, lang)}
                         </p>
                       </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle2, AlertCircle, X, Award, ArrowRight, Brain, RotateCcw } from 'lucide-react';
-import { diagnosticQuestions } from '../data/mockData';
+import { diagnosticQuestions, getLocalized, translations } from '../data/mockData';
 import confetti from 'canvas-confetti';
 
 export function DiagnosticModal({ isOpen, onClose, lang, onSaveResults }) {
@@ -115,7 +115,7 @@ export function DiagnosticModal({ isOpen, onClose, lang, onSaveResults }) {
             {/* Question Text */}
             <div className="bg-amber-50/60 border border-amber-200/60 rounded-xl p-4 mb-6">
               <p className="text-base font-semibold text-slate-800">
-                {question.question[lang]}
+                {getLocalized(question.question, lang)}
               </p>
             </div>
 
