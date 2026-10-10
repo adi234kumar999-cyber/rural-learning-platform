@@ -26,6 +26,12 @@ Most mainstream e-learning platforms (BYJU'S, Unacademy, Khan Academy, Coursera)
 7. **Teacher Analytics Dashboard:** Real-time visibility into class averages, class-wide weak topics heatmaps, and flagged *"Students Needing Immediate Attention"* with one-click remedial assignments.
 8. **AI Question Generator for Teachers:** Automatically crafts classroom quiz questions with answer keys and explanations.
 9. **Parent Feature-Phone Portal:** Generates automated low-tech SMS/IVR updates in regional languages for parents with basic keypad phones.
+10. **Multi-Role Authentication Gateway (JWT-Powered):**
+    - 🎓 **Student Dashboard:** Progress tracking, remedial recommendations, XP points, and offline downloads.
+    - 👨‍🏫 **Teacher Dashboard:** Class metrics, weak topics heatmap, attention alerts, and AI quiz generator.
+    - 📱 **Parent SMS View:** Simulated keypad feature-phone SMS delivery.
+    - 🏛️ **School Admin / Headmaster Hub:** School edge server controls, active PWA tablets count, and district sync.
+    - ⚡ **1-Click Quick Demo Accounts:** Instant evaluator shortcut for college project defense.
 
 ---
 

@@ -9,11 +9,17 @@ import {
   Download, 
   RefreshCw,
   Sparkles,
-  BookOpen
+  BookOpen,
+  LogIn,
+  LogOut,
+  User
 } from 'lucide-react';
 import { translations, supportedLanguages } from '../data/mockData';
 
 export function Navbar({ 
+  currentUser,
+  onOpenAuthModal,
+  onLogout,
   role, 
   setRole, 
   lang, 
@@ -100,7 +106,7 @@ export function Navbar({
                 {t.appName}
               </h1>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300/60">
-                10 Regional Languages
+                JWT Auth
               </span>
             </div>
             <p className="text-xs text-slate-500 hidden sm:block">
@@ -152,46 +158,88 @@ export function Navbar({
               >
                 {supportedLanguages.map((l) => (
                   <option key={l.code} value={l.code} className="text-slate-900 font-medium">
-                    {l.flag} {l.name} ({l.englishName})
+                    {l.flag} {l.name}
                   </option>
                 ))}
               </select>
             </div>
           </div>
 
-          {/* Role Switcher */}
-          <div className="relative inline-flex items-center rounded-lg bg-slate-100 p-0.5 border border-slate-300">
+          {/* Role Switcher Pills */}
+          <div className="relative inline-flex items-center rounded-lg bg-slate-100 p-0.5 border border-slate-300 text-xs">
             <button
               onClick={() => setRole('student')}
-              className={`px-2.5 py-1 text-xs font-semibold rounded-md transition ${
+              className={`px-2 py-1 font-semibold rounded-md transition ${
                 role === 'student'
                   ? 'bg-emerald-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              🎓 {t.studentRole ? t.studentRole.split(' ')[0] : 'Student'}
+              🎓 Student
             </button>
             <button
               onClick={() => setRole('teacher')}
-              className={`px-2.5 py-1 text-xs font-semibold rounded-md transition ${
+              className={`px-2 py-1 font-semibold rounded-md transition ${
                 role === 'teacher'
                   ? 'bg-emerald-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              👨‍🏫 {t.teacherRole ? t.teacherRole.split(' ')[0] : 'Teacher'}
+              👨‍🏫 Teacher
             </button>
             <button
               onClick={() => setRole('parent')}
-              className={`px-2 py-1 text-xs font-semibold rounded-md transition ${
+              className={`px-2 py-1 font-semibold rounded-md transition ${
                 role === 'parent'
                   ? 'bg-emerald-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              📱 SMS
+              📱 Parent
+            </button>
+            <button
+              onClick={() => setRole('admin')}
+              className={`px-2 py-1 font-semibold rounded-md transition ${
+                role === 'admin'
+                  ? 'bg-emerald-600 text-white shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              🏛️ Admin
             </button>
           </div>
+
+          {/* User Profile / Login Gateway Button */}
+          {currentUser ? (
+            <div className="flex items-center gap-1.5 pl-1.5 border-l border-slate-200">
+              <button
+                onClick={onOpenAuthModal}
+                className="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 px-2.5 py-1.5 rounded-lg text-xs font-bold text-emerald-950 transition shadow-sm"
+                title="Switch Account / Login Portal"
+              >
+                <span>{currentUser.avatar}</span>
+                <span className="hidden sm:inline">{currentUser.name.split(' ')[0]}</span>
+                <span className="text-[10px] text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded font-normal hidden md:inline">
+                  {currentUser.role}
+                </span>
+              </button>
+              <button
+                onClick={onLogout}
+                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition"
+                title="Log Out"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={onOpenAuthModal}
+              className="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-md active:scale-95 transition"
+            >
+              <LogIn className="w-3.5 h-3.5" />
+              <span>{lang === 'hi' ? 'लॉगिन' : 'Sign In'}</span>
+            </button>
+          )}
         </div>
       </div>
     </header>

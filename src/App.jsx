@@ -3,17 +3,29 @@ import { Navbar } from './components/Navbar';
 import { StudentView } from './components/StudentView';
 import { TeacherView } from './components/TeacherView';
 import { ParentView } from './components/ParentView';
+import { AdminView } from './components/AdminView';
+import { AuthModal } from './components/AuthModal';
 import { DiagnosticModal } from './components/DiagnosticModal';
 import { LessonModal } from './components/LessonModal';
 import { AiSaathiChat } from './components/AiSaathiChat';
 import { SystemArchitectureModal } from './components/SystemArchitectureModal';
 import { DownloadsModal } from './components/DownloadsModal';
-import { CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
+import { CheckCircle, AlertCircle, RefreshCw, LogIn, Sparkles, GraduationCap } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { supportedLanguages } from './data/mockData';
 
 export function App() {
-  const [role, setRole] = useState('student'); // 'student' | 'teacher' | 'parent'
+  const [currentUser, setCurrentUser] = useState({
+    id: 'stu-4',
+    name: 'Rohan Verma',
+    role: 'student',
+    grade: 'Class 7A',
+    rollNo: '24',
+    school: 'Govt Upper Primary School Rampur',
+    avatar: '🎓'
+  });
+
+  const [role, setRole] = useState('student'); // 'student' | 'teacher' | 'parent' | 'admin'
   const [lang, setLang] = useState('hi'); // default to 'hi' to highlight vernacular rural focus
   const [isOffline, setIsOffline] = useState(false);
   const [isLowData, setIsLowData] = useState(true); // default to low-data mode
@@ -40,6 +52,7 @@ export function App() {
   });
 
   // Modals
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isDiagnosticOpen, setIsDiagnosticOpen] = useState(false);
   const [isAiSaathiOpen, setIsAiSaathiOpen] = useState(false);
   const [isArchitectureOpen, setIsArchitectureOpen] = useState(false);
@@ -49,6 +62,21 @@ export function App() {
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3500);
+  };
+
+  const handleLoginSuccess = (userData) => {
+    setCurrentUser(userData);
+    setRole(userData.role);
+    if (userData.language) {
+      setLang(userData.language);
+    }
+    showToast(`Welcome ${userData.name}! Logged in as ${userData.role}.`);
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setIsAuthModalOpen(true);
+    showToast(lang === 'hi' ? 'सफलतापूर्वक लॉगआउट हुए।' : 'Logged out successfully.');
   };
 
   // Toggle download in IndexedDB / local state
@@ -88,7 +116,6 @@ export function App() {
 
   // Record Quiz Result
   const handleRecordQuizResult = ({ chapterId, topicKey, score, total, isOffline: wasOffline }) => {
-    // Increase points
     const earnedXP = score * 20;
     setStudentStats(prev => ({
       ...prev,
@@ -144,8 +171,20 @@ export function App() {
 
       {/* Main Navbar */}
       <Navbar
+        currentUser={currentUser}
+        onOpenAuthModal={() => setIsAuthModalOpen(true)}
+        onLogout={handleLogout}
         role={role}
-        setRole={setRole}
+        setRole={(r) => {
+          setRole(r);
+          if (currentUser) {
+            setCurrentUser(prev => ({
+              ...prev,
+              role: r,
+              avatar: r === 'student' ? '🎓' : r === 'teacher' ? '👨‍🏫' : r === 'parent' ? '📱' : '🏛️'
+            }));
+          }
+        }}
         lang={lang}
         setLang={setLang}
         isOffline={isOffline}
@@ -161,6 +200,28 @@ export function App() {
 
       {/* Main Body Content by Active Role */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-6">
+        {/* If user logged out: Prompt login card */}
+        {!currentUser && (
+          <div className="mb-6 bg-gradient-to-r from-emerald-900 to-teal-950 text-white p-6 rounded-3xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-400/30">
+                GyanSetu Authentication Gateway
+              </span>
+              <h2 className="text-xl font-bold">You are currently browsing as Guest</h2>
+              <p className="text-xs text-slate-300">
+                Login with your Student, Teacher, Parent or Admin credentials to track personal progress and offline syncs.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsAuthModalOpen(true)}
+              className="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold text-xs flex items-center gap-2 shadow-lg active:scale-95 transition shrink-0"
+            >
+              <LogIn className="w-4 h-4" />
+              <span>Login / Switch Role</span>
+            </button>
+          </div>
+        )}
+
         {role === 'student' && (
           <StudentView
             lang={lang}
@@ -183,9 +244,20 @@ export function App() {
         {role === 'parent' && (
           <ParentView lang={lang} />
         )}
+
+        {role === 'admin' && (
+          <AdminView lang={lang} />
+        )}
       </main>
 
       {/* Modals */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        lang={lang}
+        onLoginSuccess={handleLoginSuccess}
+      />
+
       <DiagnosticModal
         isOpen={isDiagnosticOpen}
         onClose={() => setIsDiagnosticOpen(false)}
