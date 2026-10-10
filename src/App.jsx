@@ -304,14 +304,14 @@ export function App() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-upsaffron-500" />
-            <strong className="text-upnavy-950">GyanSetu (ज्ञानसेतु)</strong> • Major Project 2026-27 • UP Portal Design
+            <strong className="text-upnavy-950">GyanSetu (ज्ञानसेतु)</strong> • Major Project 2026-27
           </div>
           <div className="flex items-center gap-4 text-[11px]">
             <button onClick={() => setIsArchitectureOpen(true)} className="hover:underline text-upnavy-800 hover:text-upsaffron-600 font-bold transition">
               System Architecture & Viva Defense
             </button>
             <span>•</span>
-            <span className="text-slate-400">Offline PWA Enabled</span>
+            <span className="text-slate-400"></span>
           </div>
         </div>
       </footer>
